@@ -208,7 +208,7 @@ function filterCurrentView() {
     const matchesSearch = itemText.includes(searchText);
 
     item.classList.toggle(
-      "search-hidden",
+      "search-hidden",  
       !matchesSearch
     );
   });

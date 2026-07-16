@@ -103,10 +103,10 @@ img {
   flex-direction: column;
 
   min-height: 100%;
-  padding: 45px 46px 35px;
+  padding: 25px 46px 15px;
 
   background: var(--sidebar-background);
-  border-radius: 0 24px 24px 0;
+  border-radius: 0 14px 14px 0;
 }
 
 .logo {
@@ -131,28 +131,20 @@ img {
   align-content: center;
   justify-items: center;
 
-  width: 138px;
-  height: 138px;
+  width: 158px;
+  height: 158px;
   margin-bottom: 16px;
-
-  color: var(--text-muted);
-  background:
-    linear-gradient(
-      135deg,
-      #27313d,
-      #111821
-    );
-
-  border-radius: 14px;
+  margin-left: 11px;
+  border-radius: 158px;
 }
 
 .profile-photo i {
-  margin-bottom: 7px;
+  margin-bottom: 16px;
   font-size: 38px;
 }
 
 .profile-photo span {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .profile-photo img {
@@ -318,7 +310,7 @@ img {
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 29px;
+  margin-bottom: 14px ;
 }
 
 .search-container {
