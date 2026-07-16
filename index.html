@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Portafolio | Karen Martinez</title>
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <div class="portfolio-app">
+
+    <!-- =====================================
+         MENÚ LATERAL
+    ====================================== -->
+    <aside class="sidebar">
+
+      <a href="#" class="logo">
+        <span>KM</span>PORTFOLIO
+      </a>
+
+      <div class="profile">
+
+        <!--
+          Para colocar tu fotografía, reemplaza el contenido
+          del div por:
+
+          <img src="img/perfil.jpg" alt="Karen Martinez">
+        -->
+
+        <div class="profile-photo">
+          <img src="https://media.licdn.com/dms/image/v2/D4E03AQGY2z8NiG7lCg/profile-displayphoto-crop_800_800/B4EZ6Kf7KqIUAQ-/0/1780440089553?e=1785974400&v=beta&t=V9XSz5UzgKlnAE4CUIoQJUHGEZvQ53UC3IH0QMlkL68" alt="Karen Martinez">
+        </div>
+
+        <h2>Karen Martinez</h2>
+        <p>Desarrolladora Full Stack</p>
+
+      </div>
+
+      <nav class="sidebar-menu">
+
+        <button
+          type="button"
+          class="sidebar-button active"
+          data-view="inicio-view"
+        >
+          <i class="bi bi-house-door"></i>
+          <span>Inicio</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-view="estudios-view"
+        >
+          <i class="bi bi-mortarboard"></i>
+          <span>Estudios</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-view="habilidades-view"
+        >
+          <i class="bi bi-code-slash"></i>
+          <span>Habilidades</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-view="proyectos-view"
+        >
+          <i class="bi bi-play-btn"></i>
+          <span>Proyectos</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-view="contacto-view"
+        >
+          <i class="bi bi-envelope"></i>
+          <span>Contacto</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-footer">
+
+        <!--  LinkedIn -->
+        <a href="https://www.linkedin.com/in/karen-nathalia-martinez-biscunda-full-stack/" target="_blank">
+          <i class="bi bi-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/Nathalia010" target="_blank">
+          <i class="bi bi-github"></i>
+          <span>GitHub</span>
+        </a>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         CONTENIDO PRINCIPAL
+    ====================================== -->
+    <main class="dashboard">
+
+      <!-- Barra superior -->
+      <header class="topbar">
+
+        <div class="search-container">
+
+          <div class="search-icon">
+            <i class="bi bi-search"></i>
+          </div>
+
+          <input
+            type="search"
+            id="dashboardSearch"
+            placeholder="Buscar..."
+            autocomplete="off"
+          >
+
+        </div>
+
+        <div class="topbar-actions">
+
+          <button
+            type="button"
+            class="topbar-button internal-navigation"
+            data-go="contacto-view"
+            aria-label="Ir a contacto"
+          >
+            <i class="bi bi-envelope"></i>
+          </button>
+
+          <!-- Cambia # por la ruta de tu hoja de vida -->
+          <a
+            href="#"
+            class="topbar-button"
+            aria-label="Descargar hoja de vida"
+          >
+            <i class="bi bi-download"></i>
+          </a>
+
+        </div>
+
+      </header>
+
+
+      <!-- =====================================
+           VISTA: INICIO
+      ====================================== -->
+      <section
+        id="inicio-view"
+        class="dashboard-view active"
+      >
+
+        <div class="page-heading">
+          <p>Hola, soy</p>
+          <h1>Karen Martinez</h1>
+        </div>
+
+        <!-- Primera fila -->
+        <div class="row g-4">
+
+          <!-- Cursos y estudios -->
+          <div class="col-xl-5">
+
+            <article class="dashboard-card home-studies-card">
+
+              <div class="card-header-custom">
+                <h2>Cursos y estudios</h2>
+
+                <button
+                  type="button"
+                  class="text-button internal-navigation"
+                  data-go="estudios-view"
+                >
+                  Ver todos
+                </button>
+              </div>
+
+              <div class="compact-list">
+
+                <div class="compact-item filter-item">
+
+                  <div class="compact-icon">
+                    <i class="bi bi-laptop"></i>
+                  </div>
+
+                  <div class="compact-information">
+                    <h3>Desarrollo Full Stack</h3>
+                    <p>Generation Colombia</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="small-link internal-navigation"
+                    data-go="estudios-view"
+                  >
+                    Ver
+                  </button>
+
+                </div>
+
+                <div class="compact-item filter-item">
+
+                  <div class="compact-icon">
+                    <i class="bi bi-mortarboard"></i>
+                  </div>
+
+                  <div class="compact-information">
+                    <h3>Ingeniería de Sistemas</h3>
+                    <p>Formación profesional</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="small-link internal-navigation"
+                    data-go="estudios-view"
+                  >
+                    Ver
+                  </button>
+
+                </div>
+
+                <div class="compact-item filter-item">
+
+                  <div class="compact-icon">
+                    <i class="bi bi-database"></i>
+                  </div>
+
+                  <div class="compact-information">
+                    <h3>Bases de datos</h3>
+                    <p>Formación técnica</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="small-link internal-navigation"
+                    data-go="estudios-view"
+                  >
+                    Ver
+                  </button>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <!-- Sobre mí -->
+          <div class="col-xl-7">
+
+            <article class="dashboard-card about-card">
+
+              <div class="card-header-custom">
+                <h2>Sobre mí</h2>
+              </div>
+
+              <div class="about-grid">
+
+                <div class="about-main">
+
+                  <i class="bi bi-code-square about-main-icon"></i>
+
+                  <h3>Full Stack</h3>
+
+                  <p>
+                    Desarrollo de aplicaciones web modernas.
+                  </p>
+
+                  <button
+                    type="button"
+                    class="gradient-button internal-navigation"
+                    data-go="contacto-view"
+                  >
+                    Contactar
+                  </button>
+
+                </div>
+
+                <div class="about-status">
+
+                  <span>Perfil profesional</span>
+
+                  <strong>
+                    <i class="bi bi-lightning-charge"></i>
+                    Junior
+                  </strong>
+
+                  <p>Aprendizaje continuo</p>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- Segunda fila -->
+        <div class="row g-4 second-row">
+
+          <!-- Habilidades -->
+          <div class="col-xl-5">
+
+            <article class="dashboard-card home-skills-card">
+
+              <div class="card-header-custom">
+                <h2>Habilidades</h2>
+
+                <button
+                  type="button"
+                  class="text-button internal-navigation"
+                  data-go="habilidades-view"
+                >
+                  Ver todas
+                </button>
+              </div>
+
+              <div class="home-skills-list">
+
+                <button
+                  type="button"
+                  class="home-skill filter-item"
+                >
+
+                  <span class="home-skill-icon">
+                    <i class="bi bi-filetype-html"></i>
+                  </span>
+
+                  <span class="home-skill-information">
+                    <strong>HTML y CSS</strong>
+                    <small>Diseño web</small>
+                  </span>
+
+                  <span class="home-skill-arrow">
+                    <i class="bi bi-arrow-right"></i>
+                  </span>
+
+                </button>
+
+                <button
+                  type="button"
+                  class="home-skill filter-item"
+                >
+
+                  <span class="home-skill-icon">
+                    <i class="bi bi-filetype-js"></i>
+                  </span>
+
+                  <span class="home-skill-information">
+                    <strong>JavaScript</strong>
+                    <small>Desarrollo frontend</small>
+                  </span>
+
+                  <span class="home-skill-arrow">
+                    <i class="bi bi-arrow-right"></i>
+                  </span>
+
+                </button>
+
+                <button
+                  type="button"
+                  class="home-skill filter-item"
+                >
+
+                  <span class="home-skill-icon">
+                    <i class="bi bi-database"></i>
+                  </span>
+
+                  <span class="home-skill-information">
+                    <strong>SQL y MySQL</strong>
+                    <small>Bases de datos</small>
+                  </span>
+
+                  <span class="home-skill-arrow">
+                    <i class="bi bi-arrow-right"></i>
+                  </span>
+
+                </button>
+
+                <button
+                  type="button"
+                  class="home-skill filter-item"
+                >
+
+                  <span class="home-skill-icon">
+                    <i class="bi bi-filetype-py"></i>
+                  </span>
+
+                  <span class="home-skill-information">
+                    <strong>Python</strong>
+                    <small>Automatización</small>
+                  </span>
+
+                  <span class="home-skill-arrow">
+                    <i class="bi bi-arrow-right"></i>
+                  </span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <!-- Proyectos -->
+          <div class="col-xl-7">
+
+            <article class="dashboard-card home-projects-card">
+
+              <div class="card-header-custom">
+                <h2>Mis proyectos</h2>
+
+                <button
+                  type="button"
+                  class="text-button internal-navigation"
+                  data-go="proyectos-view"
+                >
+                  Ver todos
+                </button>
+              </div>
+
+              <div class="home-projects-grid">
+
+                <!-- Proyecto 1 -->
+                <article class="home-project filter-item">
+
+                  <!--
+                    Reemplaza este div por:
+
+                    <img
+                      src="img/proyecto-1.jpg"
+                      alt="Proyecto adopción de mascotas"
+                      class="project-image"
+                    >
+                  -->
+
+                  <div class="project-placeholder">
+                    <i class="bi bi-image"></i>
+                    <span>Imagen</span>
+
+                    <button
+                      type="button"
+                      class="play-button internal-navigation"
+                      data-go="proyectos-view"
+                      aria-label="Ver proyecto"
+                    >
+                      <i class="bi bi-play-fill"></i>
+                    </button>
+                  </div>
+
+                  <div class="project-line">
+                    <span></span>
+                  </div>
+
+                  <div class="home-project-content">
+                    <span>Desarrollo web</span>
+                    <h3>Adopción de mascotas</h3>
+                  </div>
+
+                </article>
+
+
+                <!-- Proyecto 2 -->
+                <article class="home-project filter-item">
+
+                  <div class="project-placeholder">
+                    <i class="bi bi-image"></i>
+                    <span>Imagen</span>
+
+                    <button
+                      type="button"
+                      class="play-button internal-navigation"
+                      data-go="proyectos-view"
+                      aria-label="Ver proyecto"
+                    >
+                      <i class="bi bi-play-fill"></i>
+                    </button>
+                  </div>
+
+                  <div class="project-line">
+                    <span></span>
+                  </div>
+
+                  <div class="home-project-content">
+                    <span>Aplicación</span>
+                    <h3>Nombre del proyecto</h3>
+                  </div>
+
+                </article>
+
+
+                <!-- Proyecto 3 -->
+                <article class="home-project filter-item">
+
+                  <div class="project-placeholder">
+                    <i class="bi bi-image"></i>
+                    <span>Imagen</span>
+
+                    <button
+                      type="button"
+                      class="play-button internal-navigation"
+                      data-go="proyectos-view"
+                      aria-label="Ver proyecto"
+                    >
+                      <i class="bi bi-play-fill"></i>
+                    </button>
+                  </div>
+
+                  <div class="project-line">
+                    <span></span>
+                  </div>
+
+                  <div class="home-project-content">
+                    <span>Base de datos</span>
+                    <h3>Nombre del proyecto</h3>
+                  </div>
+
+                </article>
+
+              </div>
+
+              <div class="projects-navigation">
+
+                <div class="projects-navigation-line">
+                  <span></span>
+                </div>
+
+                <button type="button">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <button type="button">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           VISTA: ESTUDIOS
+      ====================================== -->
+      <section
+        id="estudios-view"
+        class="dashboard-view"
+      >
+
+        <div class="page-heading">
+          <p>Formación académica</p>
+          <h1>Cursos y estudios</h1>
+        </div>
+
+        <div class="row g-4">
+
+          <div class="col-lg-6">
+
+            <article class="information-card filter-item">
+
+              <div class="information-icon">
+                <i class="bi bi-code-square"></i>
+              </div>
+
+              <div class="information-content">
+                <span>2026 - Actualidad</span>
+                <h2>Desarrollo Full Stack Jr.</h2>
+                <p>Generation Colombia</p>
+              </div>
+
+            </article>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <article class="information-card filter-item">
+
+              <div class="information-icon">
+                <i class="bi bi-mortarboard"></i>
+              </div>
+
+              <div class="information-content">
+                <span>2026 - Actualidad</span>
+                <h2>Ingeniería de Sistemas</h2>
+                <p>Fundación Universitaria Compensar</p>
+              </div>
+
+            </article>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <article class="information-card filter-item">
+
+              <div class="information-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+
+              <div class="information-content">
+                <span>2025</span>
+                <h2>Análisis y Desarrollo de Sistemas</h2>
+                <p>Fundación Universitaria Compensar</p>
+              </div>
+
+            </article>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <article class="information-card filter-item">
+
+              <div class="information-icon">
+                <i class="bi bi-database"></i>
+              </div>
+
+              <div class="information-content">
+                <span>2023 - 2024</span>
+                <h2>Operación y mantenimiento de bases de datos</h2>
+                <p>Fundación Universitaria Compensar</p>
+              </div>
+
+            </article>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <article class="information-card filter-item">
+
+              <div class="information-icon">
+                <i class="bi bi-file-earmark-code"></i>
+              </div>
+
+              <div class="information-content">
+                <span>2022 - 2023</span>
+                <h2>Oracle Next Education</h2>
+                <p>Formación Back-End</p>
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           VISTA: HABILIDADES
+      ====================================== -->
+      <section
+        id="habilidades-view"
+        class="dashboard-view"
+      >
+
+        <div class="page-heading">
+          <p>Tecnologías y herramientas</p>
+          <h1>Mis habilidades</h1>
+        </div>
+
+        <div class="skills-full-grid">
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-filetype-html"></i>
+            <h2>HTML</h2>
+            <p>Estructura web</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-filetype-css"></i>
+            <h2>CSS</h2>
+            <p>Diseño responsivo</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-filetype-js"></i>
+            <h2>JavaScript</h2>
+            <p>Desarrollo frontend</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-bootstrap"></i>
+            <h2>Bootstrap</h2>
+            <p>Interfaces responsivas</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-filetype-py"></i>
+            <h2>Python</h2>
+            <p>Automatización</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-filetype-php"></i>
+            <h2>PHP</h2>
+            <p>Desarrollo backend</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-cup-hot"></i>
+            <h2>Java</h2>
+            <p>Programación orientada a objetos</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-database"></i>
+            <h2>MySQL</h2>
+            <p>Bases de datos</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-git"></i>
+            <h2>Git</h2>
+            <p>Control de versiones</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-github"></i>
+            <h2>GitHub</h2>
+            <p>Repositorios</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-bar-chart"></i>
+            <h2>Power BI</h2>
+            <p>Visualización de datos</p>
+          </button>
+
+          <button
+            type="button"
+            class="skill-card filter-item"
+          >
+            <i class="bi bi-diagram-3"></i>
+            <h2>ETL</h2>
+            <p>Transformación de datos</p>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           VISTA: PROYECTOS
+      ====================================== -->
+      <section
+        id="proyectos-view"
+        class="dashboard-view"
+      >
+
+        <div class="page-heading">
+          <p>Trabajos realizados</p>
+          <h1>Mis proyectos</h1>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- Proyecto principal -->
+          <div class="col-xl-8">
+
+            <article class="project-detail-card filter-item">
+
+              <div class="project-video-placeholder">
+
+                <!--
+                  Para colocar un video de YouTube,
+                  reemplaza el contenido por:
+
+                  <iframe
+                    src="https://www.youtube.com/embed/ID_DEL_VIDEO"
+                    title="Video del proyecto"
+                    allowfullscreen>
+                  </iframe>
+                -->
+
+                <i class="bi bi-play-circle"></i>
+                <span>Video del proyecto</span>
+
+              </div>
+
+              <div class="project-detail-content">
+
+                <span class="category-label">
+                  Desarrollo web
+                </span>
+
+                <h2>Plataforma de adopción de mascotas</h2>
+
+                <p>
+                  Espacio para una descripción corta del proyecto.
+                </p>
+
+                <div class="project-buttons">
+
+                  <!-- Reemplaza # por el enlace del proyecto -->
+                  <a
+                    href="#"
+                    target="_blank"
+                    class="gradient-button"
+                  >
+                    Ver proyecto
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </a>
+
+                  <!-- Reemplaza # por el enlace de GitHub -->
+                  <a
+                    href="#"
+                    target="_blank"
+                    class="secondary-button"
+                  >
+                    GitHub
+                    <i class="bi bi-github"></i>
+                  </a>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <!-- Proyecto secundario -->
+          <div class="col-xl-4">
+
+            <article class="secondary-project-card filter-item">
+
+              <div class="secondary-project-image">
+                <i class="bi bi-image"></i>
+                <span>Imagen del proyecto</span>
+              </div>
+
+              <div class="secondary-project-content">
+                <span>Aplicación web</span>
+                <h2>Nombre del proyecto</h2>
+
+                <a href="#" target="_blank">
+                  Ver proyecto
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <!-- Proyecto 3 -->
+          <div class="col-md-6">
+
+            <article class="horizontal-project-card filter-item">
+
+              <div class="horizontal-image">
+                <i class="bi bi-image"></i>
+              </div>
+
+              <div>
+                <span>Base de datos</span>
+                <h2>Nombre del proyecto</h2>
+
+                <a href="#" target="_blank">
+                  Ver proyecto
+                </a>
+              </div>
+
+            </article>
+
+          </div>
+
+
+          <!-- Proyecto 4 -->
+          <div class="col-md-6">
+
+            <article class="horizontal-project-card filter-item">
+
+              <div class="horizontal-image">
+                <i class="bi bi-image"></i>
+              </div>
+
+              <div>
+                <span>Automatización</span>
+                <h2>Nombre del proyecto</h2>
+
+                <a href="#" target="_blank">
+                  Ver proyecto
+                </a>
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           VISTA: CONTACTO
+      ====================================== -->
+      <section
+        id="contacto-view"
+        class="dashboard-view"
+      >
+
+        <div class="page-heading">
+          <p>Información profesional</p>
+          <h1>Contacto</h1>
+        </div>
+
+        <div class="row g-4">
+
+          <div class="col-lg-6">
+
+            <a
+              href="mailto:correo@ejemplo.com"
+              class="contact-card filter-item"
+            >
+
+              <div class="contact-icon">
+                <i class="bi bi-envelope"></i>
+              </div>
+
+              <div>
+                <span>Correo electrónico</span>
+                <h2>correo@ejemplo.com</h2>
+              </div>
+
+              <i class="bi bi-arrow-up-right contact-arrow"></i>
+
+            </a>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <a
+              href="#"
+              target="_blank"
+              class="contact-card filter-item"
+            >
+
+              <div class="contact-icon">
+                <i class="bi bi-linkedin"></i>
+              </div>
+
+              <div>
+                <span>Perfil profesional</span>
+                <h2>LinkedIn</h2>
+              </div>
+
+              <i class="bi bi-arrow-up-right contact-arrow"></i>
+
+            </a>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <a
+              href="#"
+              target="_blank"
+              class="contact-card filter-item"
+            >
+
+              <div class="contact-icon">
+                <i class="bi bi-github"></i>
+              </div>
+
+              <div>
+                <span>Repositorios</span>
+                <h2>GitHub</h2>
+              </div>
+
+              <i class="bi bi-arrow-up-right contact-arrow"></i>
+
+            </a>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="contact-card filter-item">
+
+              <div class="contact-icon">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+
+              <div>
+                <span>Ubicación</span>
+                <h2>Bogotá, Colombia</h2>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- Bootstrap JavaScript -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <!-- JavaScript personalizado -->
+  <script src="/scripts/script.js"></script>
+
+</body>
+</html>
