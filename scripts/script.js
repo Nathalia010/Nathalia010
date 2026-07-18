@@ -56,7 +56,7 @@ function renderizarInformacionPersonal() {
     "#portfolioLogo",
     "<span>♡ </span>PORTFOLIO"
   );
-/* Por si en algun momento manejo logo */
+
   const logo = obtenerElemento("#portfolioLogo");
   if (logo) {
     logo.href = enlaces.github || "#";
@@ -69,6 +69,19 @@ function renderizarInformacionPersonal() {
   const foto = persona.foto
     ? `<img src="${persona.foto}" alt="${persona.nombreCompleto}" />`
     : '<i class="bi bi-person"></i>';
+
+  const resumenExperiencia = infoPersonal.experiencia
+    .slice(0, 2)
+    .map(
+      (experiencia) =>
+        `<button type="button" class="about-experience-row internal-navigation" data-go="experiencia-view" aria-label="Ver experiencia: ${experiencia.cargo}">
+           <span class="about-experience-information">
+             <strong>${experiencia.cargo}</strong>
+             <small>${experiencia.empresa}</small>
+           </span>
+         </button>`
+    )
+    .join("");
 
   colocarHTML(
     "#profileContainer",
@@ -88,38 +101,32 @@ function renderizarInformacionPersonal() {
        <span class="about-flip-inner">
          <span class="about-face about-face-front about-presentation-front">
            <i class="bi bi-arrow-repeat flip-indicator" aria-hidden="true"></i>
-           <span class="about-face-label">Presentación</span>
+           <span class="about-face-label"></span>
            <span class="about-face-text">${persona.sobreMi.presentacion}</span>
-           <small>Haz clic para conocer más</small>
+           <small></small>
          </span>
          <span class="about-face about-face-back">
            <i class="bi bi-arrow-repeat flip-indicator" aria-hidden="true"></i>
-           <span class="about-face-label">Información personal</span>
-           <i class="bi bi-mortarboard about-face-icon" aria-hidden="true"></i>
+           <span class="about-face-heading">
+             <i class="bi bi-person-vcard about-face-heading-icon" aria-hidden="true"></i>
+             <span class="about-face-label">Información personal</span>
+           </span>
            <span class="about-face-text">${persona.sobreMi.datosPersonales}</span>
-           <small>Haz clic para volver</small>
+           <span class="about-back-divider"></span>
+           <span class="about-motivation-label">Motivación</span>
+           <span class="about-motivation">${persona.sobreMi.motivacion}</span>
+           <small></small>
          </span>
        </span>
      </button>
 
-     <button type="button" class="about-flip-card" data-flip-card aria-pressed="false" aria-label="Girar tarjeta de perfil profesional">
-       <span class="about-flip-inner">
-         <span class="about-face about-face-front about-profile-front">
-           <i class="bi bi-arrow-repeat flip-indicator" aria-hidden="true"></i>
-           <span class="about-face-label">Perfil profesional</span>
-           <i class="bi bi-lightning-charge about-face-icon" aria-hidden="true"></i>
-           <span class="about-face-title">${persona.sobreMi.perfilProfesional}</span>
-           <small>Haz clic para conocer mi motivación</small>
-         </span>
-         <span class="about-face about-face-back">
-           <i class="bi bi-arrow-repeat flip-indicator" aria-hidden="true"></i>
-           <span class="about-face-label">Lo que me impulsa</span>
-           <i class="bi bi-quote about-face-icon" aria-hidden="true"></i>
-           <span class="about-face-text">${persona.sobreMi.motivacion}</span>
-           <small>Haz clic para volver</small>
-         </span>
-       </span>
-     </button>`
+     <div class="about-experience-summary">
+       <div class="about-experience-header">
+         <span>Experiencia laboral</span>
+         <button type="button" class="internal-navigation" data-go="experiencia-view"></button>
+       </div>
+       <div class="about-experience-list">${resumenExperiencia}</div>
+     </div>`
   );
 
   colocarHTML(
@@ -227,6 +234,37 @@ function renderizarEstudios() {
                </div>
              </article>
            </div>`
+      )
+      .join("")
+  );
+}
+
+/*
+=========================================================
+RENDERIZAR EXPERIENCIA LABORAL
+=========================================================
+*/
+
+function renderizarExperiencia() {
+  colocarHTML(
+    "#experienceContainer",
+    infoPersonal.experiencia
+      .map(
+        (experiencia, indice) =>
+          `<article class="experience-card filter-item">
+             <span class="experience-number">${String(indice + 1).padStart(2, "0")}</span>
+             <div class="experience-icon"><i class="bi ${experiencia.icono}"></i></div>
+             <div class="experience-content">
+               <span class="experience-company">${experiencia.empresa}</span>
+               <h2>${experiencia.cargo}</h2>
+               <p><i class="bi bi-geo-alt"></i>${experiencia.ubicacion}</p>
+               <p><i class="bi bi-calendar3"></i>${experiencia.periodo}</p>
+             </div>
+             <div class="experience-duration">
+               <strong>${experiencia.meses}</strong>
+               <span>${experiencia.meses === 1 ? "mes" : "meses"}</span>
+             </div>
+           </article>`
       )
       .join("")
   );
@@ -747,6 +785,7 @@ function iniciarPortafolio() {
   renderizarInformacionPersonal();
   renderizarMenu();
   renderizarEstudios();
+  renderizarExperiencia();
   renderizarHabilidades();
   renderizarProyectos();
   renderizarContactos();

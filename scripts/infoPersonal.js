@@ -16,8 +16,8 @@ const infoPersonal = {
     descripcionCorta: "Desarrollo de aplicaciones web modernas.",
     frasePerfil: "Aprendizaje continuo",
     sobreMi: {
-      presentacion: "Tecnóloga en analisis de datos y estudiante de Ingeniería de Sistemas. Desarrollo aplicaciones web y bases de datos con SQL, Python, PHP y JavaScript, enfocada en crear soluciones eficientes.",
-      datosPersonales: "Ingeniería de Sistemas (8.º semestre) <br><br>Ubicada en Bogotá D. C., Colombia. <br><br>Edad: 26 años.",
+      presentacion: "Soy Tecnóloga en Análisis y Desarrollo de Sistemas de Información y estudiante de Ingeniería de Sistemas. Desarrollo aplicaciones web y bases de datos con SQL, Python, PHP y JavaScript, enfocada en crear soluciones eficientes.",
+      datosPersonales: "Ingeniería de Sistemas (8.º semestre). Ubicada en Bogotá D. C., Colombia. <br> Edad: 26 años.",
       perfilProfesional: "Desarrolladora Full Stack Junior",
       motivacion: "Me impulsa la posibilidad de convertir ideas en soluciones reales que faciliten procesos y mejoren experiencias."
     },
@@ -38,6 +38,7 @@ const infoPersonal = {
   menu: [
     { texto: "Inicio", vista: "inicio-view", icono: "bi-house-door" },
     { texto: "Estudios", vista: "estudios-view", icono: "bi-mortarboard" },
+    { texto: "Experiencia laboral", vista: "experiencia-view", icono: "bi-briefcase" },
     { texto: "Habilidades", vista: "habilidades-view", icono: "bi-code-slash" },
     { texto: "Proyectos", vista: "proyectos-view", icono: "bi-play-btn" },
     { texto: "Contacto", vista: "contacto-view", icono: "bi-envelope" }
@@ -45,52 +46,72 @@ const infoPersonal = {
 
   estudios: [
     {
-      titulo: "Desarrollo Full Stack Jr.",
+      titulo: "Desarrollo Full Stack Jr",
       tituloInicio: "Desarrollo Full Stack",
       institucion: "Generation Colombia",
       resumenInicio: "Generation Colombia",
-      fecha: "2026 - Actualidad",
+      fecha: "Mayo 2026 - Actualidad",
       icono: "bi-code-square",
       iconoInicio: "bi-laptop",
       habilidades: ["HTML", "CSS", "JavaScript", "Bootstrap", "Java", "MySQL", "Git", "GitHub"],
       mostrarEnInicio: true
     },
     {
-      titulo: "Ingeniería de Sistemas",
+      titulo: "Ingeniería de Sistemas (8.º semestre)",
+      tituloInicio: "Ingeniería de Sistemas",
       institucion: "Fundación Universitaria Compensar",
       resumenInicio: "Formación profesional",
-      fecha: "2026 - Actualidad",
+      fecha: "Enero 2026 - Actualidad",
       icono: "bi-mortarboard",
       habilidades: ["Java", "Python", "MySQL", "Git", "Power BI"],
       mostrarEnInicio: true
     },
     {
-      titulo: "Análisis y Desarrollo de Sistemas",
+      titulo: "Tecnología en Análisis y Desarrollo de Sistemas de Información",
       institucion: "Fundación Universitaria Compensar",
       resumenInicio: "Formación tecnológica",
-      fecha: "2025",
+      fecha: "Enero 2025 - Diciembre 2025",
       icono: "bi-laptop",
       habilidades: ["HTML", "CSS", "JavaScript", "Java", "MySQL", "Git", "GitHub"],
       mostrarEnInicio: false
     },
     {
-      titulo: "Operación y mantenimiento de bases de datos",
+      titulo: "Técnica Profesional en Operación y Mantenimiento de Bases de Datos",
       tituloInicio: "Bases de datos",
       institucion: "Fundación Universitaria Compensar",
       resumenInicio: "Formación técnica",
-      fecha: "2023 - 2024",
+      fecha: "Enero 2023 - Diciembre 2024",
       icono: "bi-database",
       habilidades: ["MySQL", "Power BI", "ETL"],
       mostrarEnInicio: true
     },
     {
-      titulo: "Oracle Next Education",
-      institucion: "Formación Back-End",
+      titulo: "Oracle Next Education - Back-End",
+      institucion: "Oracle Next Education",
       resumenInicio: "Formación Back-End",
-      fecha: "2022 - 2023",
+      fecha: "Agosto 2022 - Enero 2023",
       icono: "bi-file-earmark-code",
       habilidades: ["Java", "MySQL", "Git", "GitHub"],
       mostrarEnInicio: false
+    }
+  ],
+
+  experiencia: [
+    {
+      cargo: "Desarrollo de Sistemas - Prácticas",
+      empresa: "Grupo Corporativo San Juan Bosco",
+      periodo: "Junio 2025 - Enero 2026",
+      meses: 8,
+      ubicacion: "Bogotá, Colombia",
+      icono: "bi-code-square"
+    },
+    {
+      cargo: "Auxiliar de análisis de datos",
+      empresa: "E-Factura Plus S.A.S.",
+      periodo: "Marzo 2024 - Mayo 2025",
+      meses: 15,
+      ubicacion: "Bogotá, Colombia",
+      icono: "bi-database-check"
     }
   ],
 
@@ -141,7 +162,7 @@ const infoPersonal = {
       enlace: "#",
       github: "#",
       mostrarEnInicio: true
-    }/*Para agregras mas proyectos,
+    },
     {
       nombre: "Nombre del proyecto",
       categoria: "Automatización",
@@ -151,11 +172,11 @@ const infoPersonal = {
       enlace: "#",
       github: "#",
       mostrarEnInicio: true
-    }*/
+    }
   ],
 
   /*
-   *  si persona.correo arriba, el contacto se actualiza solo.
+   si cambia persona.correo arriba, el contacto se actualiza solo.
    */
   contactos: [
     { etiqueta: "Correo electrónico", texto: "persona.correo", enlace: "persona.correo", tipo: "email", icono: "bi-envelope" },

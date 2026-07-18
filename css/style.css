@@ -102,17 +102,18 @@ img {
   display: flex;
   flex-direction: column;
 
-  min-height: 100%;
-  padding: 25px 46px 15px;
+  min-height: 0;
+  height: 100%;
+  padding: 20px 32px 14px;
 
   background: var(--sidebar-background);
   border-radius: 0 14px 14px 0;
 }
 
 .logo {
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 300;
   letter-spacing: 1px;
 }
@@ -123,7 +124,7 @@ img {
 }
 
 .profile {
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .profile-photo {
@@ -131,11 +132,10 @@ img {
   align-content: center;
   justify-items: center;
 
-  width: 158px;
-  height: 158px;
-  margin-bottom: 16px;
-  margin-left: 11px;
-  border-radius: 158px;
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
 }
 
 .profile-photo i {
@@ -155,21 +155,22 @@ img {
 }
 
 .profile h2 {
-  margin-bottom: 5px;
-  font-size: 16px;
+  margin-bottom: 3px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .profile p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 13px;
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 8px;
 }
 
 .sidebar-button {
@@ -177,14 +178,14 @@ img {
 
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
 
   width: 100%;
-  min-height: 62px;
-  padding: 0 21px;
+  min-height: 50px;
+  padding: 0 16px;
 
   color: #c4c9d0;
-  font-size: 15px;
+  font-size: 13px;
   text-align: left;
 
   background: transparent;
@@ -214,8 +215,8 @@ img {
 }
 
 .sidebar-button i {
-  width: 21px;
-  font-size: 19px;
+  width: 19px;
+  font-size: 17px;
   text-align: center;
 }
 
@@ -246,10 +247,10 @@ img {
 .sidebar-footer {
   display: flex;
   flex-direction: column;
-  gap: 21px;
+  gap: 11px;
 
   margin-top: auto;
-  padding-top: 29px;
+  padding-top: 14px;
 
   border-top: 1px solid var(--border-color);
 }
@@ -257,10 +258,10 @@ img {
 .sidebar-footer a {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 12px;
 
   transition: color 0.25s ease;
 }
@@ -434,7 +435,6 @@ img {
   background: var(--card-background);
   border: 1px solid rgba(255, 255, 255, 0.025);
   border-radius: 18px;
-  align-items: center;
 }
 
 .card-header-custom {
@@ -522,7 +522,7 @@ img {
   font-size: 13px;
   font-weight: 500;
   text-overflow: ellipsis;
-  white-space: pre-wrap;
+  white-space: nowrap;
 }
 
 .compact-information p {
@@ -550,17 +550,15 @@ img {
 
 .about-main,
 .about-status {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   /* Centra verticalmente */
-    align-items: center;       /* Centra horizontalmente */
-    text-align: center;        /* Centra el texto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    min-height: 160px;
-    padding: 18px;
+  min-height: 160px;
+  padding: 18px;
 
-    background: var(--card-secondary);
-    border-radius: 15px;
+  background: var(--card-secondary);
+  border-radius: 15px;
 }
 
 .about-main {
@@ -582,12 +580,10 @@ img {
 }
 
 .about-main p {
-  text-align: center; /*^no lo llamaaaaaaa*/
-  max-width: 240px;
-  margin: 0 auto;
-  line-height: 1.6;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+  font-size: 11px;
 }
-
 
 .gradient-button {
   display: inline-flex;
@@ -696,8 +692,6 @@ img {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
-
-  align-items: center;
 }
 
 .about-flip-card-wide .about-face-front {
@@ -745,10 +739,7 @@ img {
   color: #d3d9e2;
   font-size: 10px;
   line-height: 1.42;
-
-  
 }
-
 
 .about-face small {
   margin-top: 10px;
@@ -779,9 +770,346 @@ img {
   transform: rotate(45deg);
 }
 
+.about-flip-card-wide .about-face {
+  align-items: center;
+  text-align: center;
+}
+
+.about-flip-card-wide .about-face-back {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.about-presentation-front .about-face-text {
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.about-face-heading {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-right: 24px;
+}
+
+.about-face-heading .about-face-label {
+  margin: 0;
+}
+
+.about-face-heading-icon {
+  color: #8d73ff;
+  font-size: 17px;
+}
+
+.about-back-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 12px 0 9px;
+  background: var(--border-color);
+}
+
+.about-motivation-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-motivation {
+  display: block;
+  color: #d3d9e2;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.about-face-back small {
+  align-self: center;
+}
+
+.about-experience-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 200px;
+  padding: 20px;
+
+  color: white;
+  text-align: left;
+
+  background: var(--card-secondary);
+  border: 1px solid transparent;
+  border-radius: 15px;
+
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.about-experience-card:hover,
+.about-experience-card:focus-visible {
+  background: #29323e;
+  border-color: var(--blue);
+  outline: none;
+  transform: translateY(-3px);
+}
+
+.about-experience-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 13px;
+  color: var(--blue);
+  font-size: 10px;
+}
+
+.about-experience-summary {
+  min-width: 0;
+  min-height: 200px;
+  padding: 15px 16px;
+  background: var(--card-secondary);
+  border: 1px solid transparent;
+  border-radius: 15px;
+}
+
+.about-experience-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.about-experience-header > span {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.about-experience-header button {
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 9px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  cursor: pointer;
+}
+
+.about-experience-header button:hover {
+  color: var(--blue);
+}
+
+.about-experience-list {
+  display: grid;
+}
+
+.about-experience-row {
+  display: block;
+  width: 100%;
+  min-height: 70px;
+  padding: 12px 0;
+
+  color: white;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.about-experience-row:last-child {
+  border-bottom: 0;
+}
+
+.about-experience-row:hover .about-experience-information strong,
+.about-experience-row:focus-visible .about-experience-information strong {
+  color: var(--blue);
+}
+
+.about-experience-row:focus-visible {
+  outline: 1px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 7px;
+}
+
+.about-experience-information {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.about-experience-information strong,
+.about-experience-information small {
+  display: block;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.about-experience-information strong {
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.about-experience-information small {
+  color: var(--text-secondary);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about-flip-inner {
     transition: none;
+  }
+}
+
+/* =====================================
+   EXPERIENCIA LABORAL
+===================================== */
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.experience-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  min-height: 190px;
+  padding: 24px;
+  overflow: hidden;
+
+  background: var(--card-background);
+  border: 1px solid transparent;
+  border-radius: 17px;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.experience-card:hover {
+  background: #1a232e;
+  border-color: rgba(18, 169, 244, 0.42);
+  transform: translateY(-3px);
+}
+
+.experience-number {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.07);
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.experience-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  color: var(--blue);
+  font-size: 25px;
+  background: var(--card-secondary);
+  border-radius: 15px;
+}
+
+.experience-company {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--purple);
+  font-size: 11px;
+}
+
+.experience-content h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.experience-content p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.experience-content p i {
+  color: var(--blue);
+}
+
+.experience-duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  padding: 12px;
+  background: rgba(18, 169, 244, 0.09);
+  border: 1px solid rgba(18, 169, 244, 0.2);
+  border-radius: 12px;
+}
+
+.experience-duration strong {
+  color: var(--blue);
+  font-size: 25px;
+  line-height: 1;
+}
+
+.experience-duration span {
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    padding: 18px;
+  }
+
+  .experience-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .experience-duration {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .experience-duration span {
+    margin: 0;
   }
 }
 
@@ -1753,7 +2081,7 @@ a.contact-card:hover {
 
   .sidebar-menu {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
     gap: 7px;
   }
 
