@@ -47,9 +47,9 @@ Gracias a esta arquitectura, basta con modificar un único dato para que el camb
 
 ---
 
-## 👩‍💻 Autora
+## 👩‍💻 **Karen Nathalia Martínez Biscunda**
 
-**Karen Nathalia Martínez Biscunda**
+
 
 💼 **LinkedIn**  
 https://www.linkedin.com/in/karen-nathalia-martinez-biscunda-full-stack/
