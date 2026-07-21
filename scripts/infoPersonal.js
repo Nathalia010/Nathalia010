@@ -136,7 +136,7 @@ const infoPersonal = {
       nombreInicio: "Adopción de mascotas",
       categoria: "Desarrollo web",
       descripcion: "Espacio para una descripción corta del proyecto.",
-      imagen: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
+      imagen: " assets/hogarAPGif-ezgif.com-optimize.gif",
       video: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
       enlace: "https://nathalia010.github.io/hogarAmigoPeludo-SGL/index.html",
       github: "https://github.com/Nathalia010/hogarAmigoPeludo-SGL",
