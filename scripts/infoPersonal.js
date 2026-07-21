@@ -136,10 +136,10 @@ const infoPersonal = {
       nombreInicio: "Adopción de mascotas",
       categoria: "Desarrollo web",
       descripcion: "Espacio para una descripción corta del proyecto.",
-      imagen: "https://i.makeagif.com/media/4-27-2023/VNYqbr.gif",
-      video: "",
-      enlace: "#",
-      github: "#",
+      imagen: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
+      video: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
+      enlace: "https://nathalia010.github.io/hogarAmigoPeludo-SGL/index.html",
+      github: "https://github.com/Nathalia010/hogarAmigoPeludo-SGL",
       mostrarEnInicio: true
     },
     {

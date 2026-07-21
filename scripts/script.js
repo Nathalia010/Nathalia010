@@ -332,11 +332,39 @@ function crearVideoProyecto(proyecto) {
   }
 
   const esArchivoDeVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(proyecto.video);
+
   if (esArchivoDeVideo) {
-    return `<video controls preload="metadata"><source src="${proyecto.video}">Tu navegador no permite reproducir este video.</video>`;
+    return `
+      <video controls preload="metadata">
+        <source src="${proyecto.video}">
+        Tu navegador no permite reproducir este video.
+      </video>
+    `;
   }
 
-  return `<iframe src="${proyecto.video}" title="Video de ${proyecto.nombre}" allowfullscreen></iframe>`;
+  let url = proyecto.video;
+
+  // Convertir enlaces de YouTube al formato embed
+  if (url.includes("youtube.com/watch?v=")) {
+    const id = url.split("watch?v=")[1].split("&")[0];
+    url = `https://www.youtube.com/embed/${id}`;
+  }
+
+  // Convertir enlaces cortos youtu.be
+  if (url.includes("youtu.be/")) {
+    const id = url.split("youtu.be/")[1].split("?")[0];
+    url = `https://www.youtube.com/embed/${id}`;
+  }
+
+  return `
+    <iframe
+      src="${url}"
+      title="Video de ${proyecto.nombre}"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  `;
 }
 
 function crearProyectoInicio(proyecto) {
