@@ -149,7 +149,7 @@ const infoPersonal = {
       descripcion: "Aplicación para consultar información de la API de la NASA.",
       imagen: "",
       video: "",
-      enlace: "#",
+      enlace: "https://jua039.github.io/api_nasa/",
       github: "https://github.com/jua039/api_nasa",
       mostrarEnInicio: true
     },
