@@ -43,7 +43,7 @@ function atributosEnlace(enlace, descargar = "") {
 
   const nombreArchivo = descargar.replace(/\.[^/.]+$/, "");
   const atributoDescarga = descargar ? `download="${descargar}"` : "";
-  const tooltip = descargar ? `data-tooltip="Descargar ${nombreArchivo}"` : "";
+  const tooltip = descargar ? `data-tooltip="Descargar CV.pdf"` : "";
   const nuevaVentana = descargar
     ? ""
     : 'target="_blank" rel="noopener noreferrer"';
