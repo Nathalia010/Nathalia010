@@ -37,12 +37,19 @@ function enlaceDisponible(enlace) {
 }
 
 function atributosEnlace(enlace, descargar = "") {
-  if (!enlaceDisponible(enlace)) return 'href="#"';
-  const atributoDescarga = descargar ? `download="${descargar}"` : "";
-  const nuevaVentana = descargar ? "" : 'target="_blank" rel="noopener noreferrer"';
-  return `href="${enlace}" ${atributoDescarga} ${nuevaVentana}`;
-}
+  if (!enlaceDisponible(enlace)) {
+    return 'href="#" aria-disabled="true"';
+  }
 
+  const nombreArchivo = descargar.replace(/\.[^/.]+$/, "");
+  const atributoDescarga = descargar ? `download="${descargar}"` : "";
+  const tooltip = descargar ? `data-tooltip="Descargar ${nombreArchivo}"` : "";
+  const nuevaVentana = descargar
+    ? ""
+    : 'target="_blank" rel="noopener noreferrer"';
+
+  return `href="${enlace}" ${atributoDescarga} ${tooltip} ${nuevaVentana}`;
+}
 /*
 =========================================================
 RENDERIZAR INFORMACIÓN PERSONAL Y MENÚ

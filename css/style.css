@@ -357,6 +357,44 @@ img {
   gap: 15px;
 }
 
+.topbar-actions .topbar-button{
+    position: relative;
+}
+
+.topbar-actions .topbar-button::after{
+    content: attr(data-tooltip);
+
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    z-index: 20;
+
+    width: max-content;
+    max-width: 150px;
+    padding: 6px 8px;
+
+    color: white;
+    font-size: 10px;
+    line-height: 1;
+    white-space: nowrap;
+
+    background: #080e18;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.35);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translate(-50%,5px);
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.topbar-actions .topbar-button:hover::after,
+.topbar-actions .topbar-button:focus-visible::after{
+    opacity: 1;
+    transform: translate(-50%,0);
+}
 .topbar-button {
   display: grid;
   width: 48px;
