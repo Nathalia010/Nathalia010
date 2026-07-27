@@ -127,7 +127,8 @@ const infoPersonal = {
     { nombre: "Git", descripcion: "Control de versiones", icono: "bi-git", mostrarEnInicio: false },
     { nombre: "GitHub", descripcion: "Repositorios", icono: "bi-github", mostrarEnInicio: false },
     { nombre: "Power BI", descripcion: "Visualización de datos", icono: "bi-bar-chart", mostrarEnInicio: false },
-    { nombre: "ETL", descripcion: "Transformación de datos", icono: "bi-diagram-3", mostrarEnInicio: false }
+    { nombre: "ETL", descripcion: "Transformación de datos", icono: "bi-diagram-3", mostrarEnInicio: false },
+    { nombre: "API", descripcion: "consumir una api", icono: "bi bi-cloud", mostrarEnInicio: false }
   ],
 
   proyectos: [
@@ -135,22 +136,31 @@ const infoPersonal = {
       nombre: "Plataforma de adopción de mascotas",
       nombreInicio: "Adopción de mascotas",
       categoria: "Desarrollo web",
-      descripcion: "Proyecto de desarrollo web orientado a optimizar la gestión logística de una fundación de mascotas mediante una plataforma moderna, intuitiva y fácil de usar.",
+      descripcion: `
+      Plataforma web desarrollada para optimizar el proceso de adopción y la gestión logística de una fundación de mascotas. <br>
+      <strong>Mi aporte:</strong>  desarrollé el backend, implementé autenticación de la api de la Nasa y Guardar favoritos. <br>
+      <strong>Resultado:</strong> Centraliza la información, reduce el trabajo manual y mejora el seguimiento del proceso de adopción.
+      `,
       imagen: " assets/hogarAP.gif",
       video: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
       enlace: "https://nathalia010.github.io/hogarAmigoPeludo-SGL/index.html",
       github: "https://github.com/Nathalia010/hogarAmigoPeludo-SGL",
+      habilidades: ["HTML", "CSS", "JavaScript", "Bootstrap", "GitHub"],
       mostrarEnInicio: true
     },
     {
       nombre: "Api Nasa",
       categoria: "Desarrollo web",
       categoriaInicio: "Desarrollo web",
-      descripcion: "Aplicación para consultar información de la API de la NASA.",
+      descripcion: `
+        Aplicación web que consume la API de la NASA para mostrar imágenes e información astronómica en tiempo real. <br>
+        <strong>Mi aporte:</strong> Implementé la integración con la API mediante JavaScript, el manejo de respuestas asíncronas, el tratamiento de errores y una interfaz responsive. <br>
+        <strong>Resultado:</strong> Facilita la consulta de contenido espacial con una experiencia de usuario clara y dinámica.        `,
       imagen: "",
       video: "",
       enlace: "https://jua039.github.io/api_nasa/",
       github: "https://github.com/jua039/api_nasa",
+      habilidades: ["HTML", "CSS", "JavaScript","API", "GitHub"],
       mostrarEnInicio: true
     },
     {

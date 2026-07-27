@@ -398,6 +398,12 @@ function crearProyectoPrincipal(proyecto, indiceOriginal) {
         <span class="category-label">${proyecto.categoria}</span>
         <h2>${proyecto.nombre}</h2>
         <p>${proyecto.descripcion}</p>
+        <div class="information-content">
+          <div class="study-skills" aria-label="Habilidades aprendidas">
+            ${crearHabilidadesEstudio(proyecto)} 
+            <br><br>
+         </div>
+        </div>
         <div class="project-buttons">
           <a ${atributosEnlace(proyecto.enlace)} class="gradient-button">Ver proyecto <i class="bi bi-box-arrow-up-right"></i></a>
           <a ${atributosEnlace(proyecto.github)} class="secondary-button">GitHub <i class="bi bi-github"></i></a>
