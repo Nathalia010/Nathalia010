@@ -120,15 +120,23 @@ const infoPersonal = {
     { nombre: "CSS", descripcion: "Diseño responsivo", icono: "bi-filetype-css", mostrarEnInicio: false },
     { nombre: "JavaScript", descripcion: "Desarrollo frontend", icono: "bi-filetype-js", mostrarEnInicio: true },
     { nombre: "Bootstrap", descripcion: "Interfaces responsivas", icono: "bi-bootstrap", mostrarEnInicio: false },
-    { nombre: "Python", descripcion: "Automatización", icono: "bi-filetype-py", mostrarEnInicio: true },
+    { nombre: "Python", nombreInicio: "Python y SQL", descripcion: "Automatización", icono: "bi-filetype-py", mostrarEnInicio: true },
     { nombre: "PHP", descripcion: "Desarrollo backend", icono: "bi-filetype-php", mostrarEnInicio: false },
-    { nombre: "Java", descripcion: "Programación orientada a objetos", icono: "bi-cup-hot", mostrarEnInicio: false },
-    { nombre: "MySQL", nombreInicio: "SQL y MySQL", descripcion: "Bases de datos", icono: "bi-database", mostrarEnInicio: true },
+    { nombre: "Java", descripcion: "Programación orientada a objetos", icono: "bi-cup-hot", mostrarEnInicio: true },
+    { nombre: "MySQL", nombreInicio: "SQL y MySQL", descripcion: "Bases de datos", icono: "bi-database", mostrarEnInicio: false },
     { nombre: "Git", descripcion: "Control de versiones", icono: "bi-git", mostrarEnInicio: false },
     { nombre: "GitHub", descripcion: "Repositorios", icono: "bi-github", mostrarEnInicio: false },
     { nombre: "Power BI", descripcion: "Visualización de datos", icono: "bi-bar-chart", mostrarEnInicio: false },
     { nombre: "ETL", descripcion: "Transformación de datos", icono: "bi-diagram-3", mostrarEnInicio: false },
-    { nombre: "API", descripcion: "consumir una api", icono: "bi bi-cloud", mostrarEnInicio: false }
+    { nombre: "API", descripcion: "consumir una api", icono: "bi bi-cloud", mostrarEnInicio: false },
+    { nombre: "Node.js", descripcion: "Backend con Node.js", icono: "bi bi-hdd-network", mostrarEnInicio: false },
+    { nombre: "LocalStorage", descripcion: "Almacenamiento en el navegador", icono: "bi bi-database", mostrarEnInicio: false },
+    { nombre: "Fetch API", descripcion: "Consumo de APIs mediante peticiones HTTP", icono: "bi bi-cloud-download", mostrarEnInicio: false },
+    { nombre: "DOM", descripcion: "Manipulación dinámica del contenido HTML", icono: "bi bi-diagram-3", mostrarEnInicio: false },
+    { nombre: "Java Swing", descripcion: "Desarrollo de interfaces gráficas de escritorio", icono: "bi bi-window", mostrarEnInicio: false },
+    { nombre: "MVC", descripcion: "Arquitectura Modelo - Vista - Controlador", icono: "bi bi-diagram-2", mostrarEnInicio: false },
+    { nombre: "POO", descripcion: "Programación Orientada a Objetos", icono: "bi bi-boxes", mostrarEnInicio: false },
+    { nombre: "Responsive Design", descripcion: "Diseño adaptable para diferentes dispositivos", icono: "bi bi-phone", mostrarEnInicio: false }
   ],
 
   proyectos: [
@@ -137,11 +145,11 @@ const infoPersonal = {
       nombreInicio: "Adopción de mascotas",
       categoria: "Desarrollo web",
       descripcion: `
-      Plataforma web desarrollada para optimizar el proceso de adopción y la gestión logística de una fundación de mascotas. <br>
-      <strong>Mi aporte:</strong>  desarrollé el backend, implementé autenticación de la api de la Nasa y Guardar favoritos. <br>
-      <strong>Resultado:</strong> Centraliza la información, reduce el trabajo manual y mejora el seguimiento del proceso de adopción.
-      `,
-      imagen: " assets/hogarAP.gif",
+        Plataforma web desarrollada para optimizar el proceso de adopción y la gestión logística de una fundación de mascotas. <br>
+        <strong>Mi aporte:</strong>  desarrollé el backend, implementé autenticación de la api de la Nasa y Guardar favoritos. <br>
+        <strong>Resultado:</strong> Centraliza la información, reduce el trabajo manual y mejora el seguimiento del proceso de adopción.
+        `,
+      imagen: "assets/hogarAP.gif",
       video: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
       enlace: "https://nathalia010.github.io/hogarAmigoPeludo-SGL/index.html",
       github: "https://github.com/Nathalia010/hogarAmigoPeludo-SGL",
@@ -156,32 +164,74 @@ const infoPersonal = {
         Aplicación web que consume la API de la NASA para mostrar imágenes e información astronómica en tiempo real. <br>
         <strong>Mi aporte:</strong> Implementé la integración con la API mediante JavaScript, el manejo de respuestas asíncronas, el tratamiento de errores y una interfaz responsive. <br>
         <strong>Resultado:</strong> Facilita la consulta de contenido espacial con una experiencia de usuario clara y dinámica.        `,
-      imagen: "",
-      video: "",
+      imagen: "assets/apiNasa1.gif",
+      video: "https://youtu.be/JTO6g5usE10",
       enlace: "https://jua039.github.io/api_nasa/",
       github: "https://github.com/jua039/api_nasa",
-      habilidades: ["HTML", "CSS", "JavaScript","API", "GitHub"],
+      habilidades: ["HTML","CSS","JavaScript","API","GitHub","Node.js","LocalStorage"],
       mostrarEnInicio: true
     },
     {
       nombre: "Web Pokemon",
       categoria: "Desarrollo web",
       categoriaInicio: "Desarrollo web",
-      descripcion: "Proyecto relacionado con apis y consulta de datos de pokemones.",
-      imagen: "",
+      descripcion: `
+        Aplicación web desarrollada para consultar información de Pokémon utilizando la <strong>PokéAPI</strong>. Permite realizar búsquedas por nombre, visualizar imágenes, estadísticas, habilidades y características de cada Pokémon mediante una interfaz intuitiva y responsive. <br>
+        <strong>Mi aporte:</strong> Implementé el consumo de la API REST utilizando JavaScript, gestioné peticiones asíncronas con Fetch API y async/await, desarrollé el manejo de errores, la actualización dinámica del contenido y una interfaz adaptable a diferentes dispositivos. <br>
+        <strong>Resultado:</strong> Se obtuvo una aplicación interactiva que facilita la exploración de información de Pokémon, fortaleciendo conocimientos en consumo de APIs, manipulación del DOM y desarrollo web responsive.
+      `,
+      imagen: "assets/web Pokemon.gif",
       video: "https://youtu.be/Gkxn5ldsd9U",
       enlace: "https://nathalia010.github.io/25.2WebPokemon/",
       github: "https://github.com/Nathalia010/25.2WebPokemon",
+      habilidades: ["HTML","CSS","JavaScript","API","Fetch API","DOM","GitHub"],
       mostrarEnInicio: true
     },
     {
       nombre: "Agenta Telefonica java",
       categoria: "Desarrollo de aplicaciones",
-      descripcion: "Aplicación de escritorio desarrollada en Java Swing utilizando el patrón de arquitectura Modelo - Vista - Controlador.",
+      descripcion: `
+        Aplicación de escritorio desarrollada en <strong>Java Swing</strong> para la gestión de contactos telefónicos. Permite registrar, consultar, editar y eliminar contactos mediante una interfaz gráfica intuitiva, siguiendo el patrón de arquitectura <strong>Modelo - Vista - Controlador (MVC)</strong>. <br>
+        <strong>Mi aporte:</strong> Participé en el desarrollo de la interfaz gráfica, la implementación de la lógica de negocio, la gestión de eventos y la organización del proyecto bajo el patrón MVC, aplicando principios de programación orientada a objetos. <br>
+        <strong>Resultado:</strong> Se obtuvo una aplicación funcional y estructurada que facilita la administración de contactos, fortaleciendo conocimientos en Java, arquitectura MVC y desarrollo de aplicaciones de escritorio.
+      `,
       imagen: "assets/agenda.gif",
       video: "https://youtu.be/kHyILBwpS9E",
       enlace: "https://github.com/Ale20222/agenda-telefonica/tree/main",
       github: "https://github.com/Ale20222/agenda-telefonica/tree/main",
+      habilidades: ["Java","Java Swing","MVC","POO","Git","GitHub"],
+      mostrarEnInicio: true
+    },
+    {
+      nombre: "TrendyShop",
+      categoria: "Desarrollo web",
+      categoriaInicio: "Desarrollo web",
+      descripcion: `
+        Plataforma web de comercio electrónico diseñada para ofrecer una experiencia de compra moderna e intuitiva. Permite explorar un catálogo de productos, consultar información detallada y gestionar el proceso de compra mediante una interfaz responsive y fácil de usar. <br>
+        <strong>Mi aporte:</strong> Participé en el diseño y desarrollo del frontend, implementé la navegación entre secciones, la visualización dinámica de productos,carrito de compras y una interfaz adaptable a dispositivos móviles. <br>
+        <strong>Resultado:</strong> Se obtuvo un prototipo funcional de e-commerce que aplica buenas prácticas de desarrollo web, organización del código y diseño de interfaces centradas en la experiencia del usuario.
+      `,
+      imagen: "assets/TrendyShop.gif",
+      video: "https://youtu.be/dT264Mre3bE",
+      enlace: "https://github.com/girleykinnux-pixel/-trendyShop",
+      github: "https://github.com/girleykinnux-pixel/-trendyShop",
+      habilidades: ["HTML","CSS","JavaScript","Bootstrap","Responsive Design","GitHub"],
+      mostrarEnInicio: true
+    },
+    {
+      nombre: "Task Manager",
+      categoria: "Desarrollo web",
+      categoriaInicio: "Desarrollo web",
+      descripcion: `
+        Aplicación web desarrollada para la gestión de tareas diarias, que permite crear, organizar y administrar actividades mediante una interfaz intuitiva. Los usuarios pueden agregar tareas con título, descripción y categoría, visualizar el listado completo con estados diferenciados, marcarlas como completadas o urgentes y eliminarlas con confirmación. <br>
+        <strong>Mi aporte:</strong> Desarrollé la lógica de gestión de tareas utilizando JavaScript, implementé la manipulación dinámica del DOM, el manejo de eventos, el almacenamiento de datos con LocalStorage y un contador en tiempo real que muestra el número total de tareas y las completadas. Además, diseñé una interfaz responsive enfocada en mejorar la experiencia del usuario. <br>
+        <strong>Resultado:</strong> Se obtuvo una aplicación funcional que facilita la organización de actividades diarias, aplicando buenas prácticas de desarrollo web, persistencia de datos y programación interactiva.
+      `,
+      imagen: "assets/taskManager.gif",
+      video: "https://youtu.be/WdM8hu1aQ3w",
+      enlace: "https://nathalia010.github.io/19.2Interaccion/",
+      github: "https://github.com/Nathalia010/19.2Interaccion",
+      habilidades: ["HTML","CSS","JavaScript","DOM","LocalStorage","Git","GitHub"],
       mostrarEnInicio: true
     }
   ],
