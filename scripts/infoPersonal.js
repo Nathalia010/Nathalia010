@@ -25,7 +25,7 @@ const infoPersonal = {
     telefono: "+57 301 325 8684",
     whatsapp: "573013258684",
     ubicacion: "Bogotá, Colombia",
-    foto: "https://media.licdn.com/dms/image/v2/D4E03AQGY2z8NiG7lCg/profile-displayphoto-crop_800_800/B4EZ6Kf7KqIUAQ-/0/1780440089553?e=1785974400&v=beta&t=V9XSz5UzgKlnAE4CUIoQJUHGEZvQ53UC3IH0QMlkL68",
+    foto: "assets/Foto-perfil.png",
     hojaDeVida: "assets/CV Karen Martinez 2026 Español DES.pdf",
     nombreDescargaCV: "Karen_Nathalia_Martinez_2026-CV.pdf"
   },
