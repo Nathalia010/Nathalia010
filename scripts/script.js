@@ -61,7 +61,7 @@ function renderizarInformacionPersonal() {
 
   colocarHTML(
     "#portfolioLogo",
-    "<span>♡ </span>PORTFOLIO"
+    "<span>♡ </span>PORTAFOLIO"
   );
 
   const logo = obtenerElemento("#portfolioLogo");
