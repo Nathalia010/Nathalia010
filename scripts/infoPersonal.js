@@ -50,10 +50,10 @@ const infoPersonal = {
       tituloInicio: "Desarrollo Full Stack",
       institucion: "Generation Colombia",
       resumenInicio: "Generation Colombia",
-      fecha: "Mayo 2026 - Actualidad",
+      fecha: "Mayo 2026 - agosto 2026",
       icono: "bi-code-square",
       iconoInicio: "bi-laptop",
-      habilidades: ["HTML", "CSS", "JavaScript", "Bootstrap", "Java", "MySQL", "Git", "GitHub"],
+      habilidades: ["HTML", "CSS", "JavaScript", "Bootstrap", "Java","Node.js","Docker","AWS", "MySQL", "Git", "GitHub"],
       mostrarEnInicio: true
     },
     {
@@ -63,7 +63,7 @@ const infoPersonal = {
       resumenInicio: "Formación profesional",
       fecha: "Enero 2026 - Actualidad",
       icono: "bi-mortarboard",
-      habilidades: ["Java", "Python", "MySQL", "Git", "Power BI"],
+      habilidades: ["Java", "Python", "MySQL", "Git", "Power BI","Análisis de sistemas","Desarrollo web","Metodologías ágiles", "Excel"],
       mostrarEnInicio: true
     },
     {
@@ -72,7 +72,7 @@ const infoPersonal = {
       resumenInicio: "Formación tecnológica",
       fecha: "Enero 2025 - Diciembre 2025",
       icono: "bi-laptop",
-      habilidades: ["HTML", "CSS", "JavaScript", "Java", "MySQL", "Git", "GitHub"],
+      habilidades: [ "Análisis de sistemas","Desarrollo web","Metodologías ágiles", "Excel", "Power BI", "MySQL"],
       mostrarEnInicio: false
     },
     {
@@ -136,7 +136,15 @@ const infoPersonal = {
     { nombre: "Java Swing", descripcion: "Desarrollo de interfaces gráficas de escritorio", icono: "bi bi-window", mostrarEnInicio: false },
     { nombre: "MVC", descripcion: "Arquitectura Modelo - Vista - Controlador", icono: "bi bi-diagram-2", mostrarEnInicio: false },
     { nombre: "POO", descripcion: "Programación Orientada a Objetos", icono: "bi bi-boxes", mostrarEnInicio: false },
-    { nombre: "Responsive Design", descripcion: "Diseño adaptable para diferentes dispositivos", icono: "bi bi-phone", mostrarEnInicio: false }
+    { nombre: "Responsive Design", descripcion: "Diseño adaptable para diferentes dispositivos", icono: "bi bi-phone", mostrarEnInicio: false },
+    { nombre: "Inteligencia Artificial", descripcion: "Uso de IA como apoyo para el desarrollo y optimización de aplicaciones", icono: "bi bi-stars", mostrarEnInicio: false },
+    { nombre: "Node.js", descripcion: "Entorno de ejecución para desarrollar aplicaciones del lado del servidor", icono: "bi bi-node-plus", mostrarEnInicio: false },
+    { nombre: "Docker", descripcion: "Contenerización y despliegue de aplicaciones", icono: "bi bi-box-seam", mostrarEnInicio: false },
+    { nombre: "AWS", descripcion: "Servicios de computación y despliegue en la nube", icono: "bi bi-cloud", mostrarEnInicio: false },
+    { nombre: "Análisis de sistemas", descripcion: "Análisis y diseño de soluciones tecnológicas", icono: "bi bi-diagram-3", mostrarEnInicio: false },
+    { nombre: "Desarrollo web", descripcion: "Desarrollo de aplicaciones y sitios web", icono: "bi bi-code-slash", mostrarEnInicio: false },
+    { nombre: "Metodologías ágiles", descripcion: "Trabajo colaborativo mediante metodologías ágiles", icono: "bi bi-kanban", mostrarEnInicio: false },
+    { nombre: "Excel", descripcion: "Análisis, organización y gestión de datos", icono: "bi bi-file-earmark-spreadsheet", mostrarEnInicio: false }
   ],
 
   proyectos: [
@@ -232,6 +240,22 @@ const infoPersonal = {
       enlace: "https://nathalia010.github.io/19.2Interaccion/",
       github: "https://github.com/Nathalia010/19.2Interaccion",
       habilidades: ["HTML","CSS","JavaScript","DOM","LocalStorage","Git","GitHub"],
+      mostrarEnInicio: true
+    },
+    {
+      nombre: "Pronóstico del clima",
+      categoria: "Manejo de IA",
+      categoriaInicio: "IA",
+      descripcion: `
+        Aplicación web desarrollada con apoyo de inteligencia artificial para consultar y visualizar el pronóstico del clima de diferentes ciudades. Los usuarios pueden buscar una ubicación y obtener información meteorológica como temperatura, condiciones climáticas, humedad, velocidad del viento y pronóstico de los próximos días mediante una interfaz intuitiva y responsive. <br>
+        <strong>Mi aporte:</strong> Desarrollé la lógica de consulta y visualización de información utilizando JavaScript, implementé el consumo de una API meteorológica mediante Fetch y programación asíncrona, la manipulación dinámica del DOM y la actualización de los datos según la ciudad seleccionada. Además, utilicé inteligencia artificial como herramienta de apoyo para optimizar el desarrollo, resolver problemas y mejorar la funcionalidad de la aplicación. <br>
+        <strong>Resultado:</strong> Se obtuvo una aplicación funcional e interactiva que permite consultar fácilmente las condiciones meteorológicas y el pronóstico, aplicando conceptos de desarrollo web, consumo de APIs, programación asíncrona, manipulación del DOM e integración de herramientas de inteligencia artificial.
+      `,
+      imagen: "assets/taskManager.gif",
+      video: "https://www.youtube.com/watch?v=atL2yFTDd44&t=1s",
+      enlace: "https://github.com/Nathalia010/Clima-IA",
+      github: "https://github.com/Nathalia010/Clima-IA",
+      habilidades: ["HTML","CSS","JavaScript","DOM","Inteligencia Artificial","GitHub"],
       mostrarEnInicio: true
     }
   ],
