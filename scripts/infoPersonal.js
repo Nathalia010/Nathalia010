@@ -253,7 +253,7 @@ const infoPersonal = {
       `,
       imagen: "assets/taskManager.gif",
       video: "https://www.youtube.com/watch?v=atL2yFTDd44&t=1s",
-      enlace: "https://github.com/Nathalia010/Clima-IA",
+      enlace: "https://nathalia010.github.io/Clima-IA/",
       github: "https://github.com/Nathalia010/Clima-IA",
       habilidades: ["HTML","CSS","JavaScript","DOM","Inteligencia Artificial","GitHub"],
       mostrarEnInicio: true
