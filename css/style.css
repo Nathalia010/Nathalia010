@@ -1654,7 +1654,7 @@ img {
 }
 
 .skill-card:hover {
-  background: #1c2530;
+  background: #1d2835;
   transform: translateY(-3px);
 }
 
@@ -2531,9 +2531,9 @@ a.contact-card:hover {
   --sidebar-background: #f6f9fd;
   --card-background: #ffffff;
   --card-secondary: #edf3f8;
-  --card-hover: #dfeaf4;
+  --card-hover: #accceb;
   --input-background: #edf3f8;
-  --text-primary: #172033;
+  --text-primary: #2c3e65;
   --text-secondary: #59677a;
   --text-muted: #7b8796;
   --blue: #087fc1;
@@ -2640,7 +2640,7 @@ a.contact-card:hover {
 }
 
 :root[data-theme="light"] .home-skill-icon {
-  color: #203044;
+  color: #243850;
   background: #dce7f0;
 }
 
@@ -2708,5 +2708,5 @@ a.contact-card:hover {
 :root[data-theme="light"] .information-content .study-skill-tooltip,
 :root[data-theme="light"] .information-content .study-skill-tooltip::after {
   color: #ffffff;
-  background: #172033;
+  background: #2d4271;
 }
