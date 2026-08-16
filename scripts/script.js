@@ -13,7 +13,8 @@ const obtenerElementos = (selector) => document.querySelectorAll(selector);
 const estadoProyectos = {
   indiceDestacado: 0,
   inicioCarrusel: 0,
-  cantidadVisible: 3
+  cantidadVisible: 3,
+  habilidadesSeleccionadas: new Set()
 };
 
 /* Permite recordar qué estudio se abrió desde la tarjeta de Inicio. */
@@ -49,6 +50,47 @@ function atributosEnlace(enlace, descargar = "") {
     : 'target="_blank" rel="noopener noreferrer"';
 
   return `href="${enlace}" ${atributoDescarga} ${tooltip} ${nuevaVentana}`;
+}
+
+function aplicarTema(tema) {
+  const temaClaro = tema === "light";
+  document.documentElement.dataset.theme = temaClaro ? "light" : "dark";
+
+  obtenerElementos("[data-theme-toggle]").forEach((botonTema) => {
+    botonTema.setAttribute("aria-pressed", String(temaClaro));
+    botonTema.setAttribute(
+      "aria-label",
+      temaClaro ? "Cambiar a tema oscuro" : "Cambiar a tema claro"
+    );
+    const iconoTema = botonTema.querySelector(".theme-icon");
+    if (iconoTema) {
+      iconoTema.className = `bi ${temaClaro ? "bi-sun" : "bi-moon"} theme-icon`;
+    }
+  });
+}
+
+function inicializarTema() {
+  let temaGuardado = "dark";
+
+  try {
+    temaGuardado = localStorage.getItem("portfolio-theme") || "dark";
+  } catch {
+    temaGuardado = "dark";
+  }
+
+  aplicarTema(temaGuardado);
+}
+
+function alternarTema() {
+  const nuevoTema =
+    document.documentElement.dataset.theme === "light" ? "dark" : "light";
+
+  aplicarTema(nuevoTema);
+  try {
+    localStorage.setItem("portfolio-theme", nuevoTema);
+  } catch {
+    /* El tema sigue funcionando aunque el navegador bloquee el almacenamiento. */
+  }
 }
 /*
 =========================================================
@@ -138,11 +180,18 @@ function renderizarInformacionPersonal() {
 
   colocarHTML(
     "#topbarActions",
-    `<button type="button" class="topbar-button internal-navigation" data-go="contacto-view" aria-label="Ir a contacto">
+    `<button type="button" class="topbar-button theme-toggle-button" data-theme-toggle aria-label="Cambiar a tema claro" aria-pressed="false">
+       <i class="bi bi-moon theme-icon" aria-hidden="true"></i>
+     </button>
+     <button type="button" class="topbar-button internal-navigation" data-go="contacto-view" aria-label="Ir a contacto">
        <i class="bi bi-envelope"></i>
      </button>
-     <a ${atributosEnlace(persona.hojaDeVida, persona.nombreDescargaCV)} class="topbar-button" aria-label="Descargar hoja de vida">
+     <a ${atributosEnlace(persona.hojaDeVida, persona.nombreDescargaCV)} class="topbar-button topbar-hv-desktop" aria-label="Descargar hoja de vida">
        <i class="bi bi-download"></i>
+     </a>
+     <a ${atributosEnlace(persona.hojaDeVida)} class="topbar-button topbar-hv-mobile" aria-label="Abrir hoja de vida en una pestaña nueva" data-tooltip="Abrir hoja de vida">
+       <i class="bi bi-file-earmark-person"></i>
+       <span></span>
      </a>`
   );
 }
@@ -234,9 +283,10 @@ function renderizarEstudios() {
                <div class="information-content">
                  <span>${estudio.fecha}</span>
                  <h2>${estudio.titulo}</h2>
-                 <p>${estudio.institucion}</p>
+                 <p>${estudio.institucion}</p><br>
+                 <span>Habilidades adquiridas:</span>
                  <div class="study-skills" aria-label="Habilidades aprendidas">
-                   ${crearHabilidadesEstudio(estudio)}
+                  ${crearHabilidadesEstudio(estudio)}
                  </div>
                </div>
              </article>
@@ -293,7 +343,7 @@ function renderizarHabilidades() {
     habilidadesInicio
       .map(
         (habilidad) =>
-          `<button type="button" class="home-skill filter-item">
+          `<button type="button" class="home-skill filter-item" data-project-skill="${habilidad.nombre}">
              <span class="home-skill-icon"><i class="bi ${habilidad.icono}"></i></span>
              <span class="home-skill-information">
                <strong>${habilidad.nombreInicio || habilidad.nombre}</strong>
@@ -310,7 +360,7 @@ function renderizarHabilidades() {
     infoPersonal.habilidades
       .map(
         (habilidad) =>
-          `<button type="button" class="skill-card filter-item">
+          `<button type="button" class="skill-card filter-item" data-project-skill="${habilidad.nombre}">
              <i class="bi ${habilidad.icono}"></i>
              <h2>${habilidad.nombre}</h2>
              <p>${habilidad.descripcion}</p>
@@ -395,10 +445,17 @@ function crearProyectoPrincipal(proyecto, indiceOriginal) {
     <article class="project-detail-card filter-item" data-project-index="${indiceOriginal}" tabindex="0" role="button" aria-label="Proyecto destacado: ${proyecto.nombre}" aria-current="true">
       <div class="project-video-placeholder">${crearVideoProyecto(proyecto)}</div>
       <div class="project-detail-content">
-        <span class="category-label">${proyecto.categoria}</span>
+        <div class="project-detail-heading">
+          <span class="category-label">${proyecto.categoria}</span>
+          <button type="button" class="project-collapse-button" aria-label="Reducir el proyecto ${proyecto.nombre}" title="Volver a vista pequeña">
+            <i class="bi bi-arrows-angle-contract" aria-hidden="true"></i>
+            <span>Reducir</span>
+          </button>
+        </div>
         <h2>${proyecto.nombre}</h2>
         <p>${proyecto.descripcion}</p>
         <div class="information-content">
+        <span>Habilidades adquiridas:</span>
           <div class="study-skills" aria-label="Habilidades aprendidas">
             ${crearHabilidadesEstudio(proyecto)} 
             <br><br>
@@ -467,14 +524,37 @@ function renderizarProyectosDetalle(animar = false) {
     return;
   }
 
-  if (!infoPersonal.proyectos[estadoProyectos.indiceDestacado]) {
-    estadoProyectos.indiceDestacado = 0;
+  const proyectosVisibles = infoPersonal.proyectos
+    .map((proyecto, indiceOriginal) => ({ proyecto, indiceOriginal }))
+    .filter(({ proyecto }) =>
+      [...estadoProyectos.habilidadesSeleccionadas].every((habilidad) =>
+        proyecto.habilidades?.includes(habilidad)
+      )
+    );
+
+  if (!proyectosVisibles.length) {
+    colocarHTML(
+      "#projectsContainer",
+      `<div class="projects-empty-state">
+         <i class="bi bi-funnel" aria-hidden="true"></i>
+         <h2>No hay proyectos con estas habilidades</h2>
+         <p>Prueba quitando uno de los filtros seleccionados.</p>
+       </div>`
+    );
+    return;
+  }
+
+  const destacadoEsVisible = proyectosVisibles.some(
+    ({ indiceOriginal }) => indiceOriginal === estadoProyectos.indiceDestacado
+  );
+  if (estadoProyectos.indiceDestacado !== null && !destacadoEsVisible) {
+    estadoProyectos.indiceDestacado = proyectosVisibles[0].indiceOriginal;
   }
 
   colocarHTML(
     "#projectsContainer",
-    infoPersonal.proyectos
-      .map((proyecto, indiceOriginal) => {
+    proyectosVisibles
+      .map(({ proyecto, indiceOriginal }) => {
         const esDestacado = indiceOriginal === estadoProyectos.indiceDestacado;
         return esDestacado
           ? crearProyectoPrincipal(proyecto, indiceOriginal)
@@ -486,8 +566,69 @@ function renderizarProyectosDetalle(animar = false) {
   if (animar) animarTarjetas("#projectsContainer [data-project-index]", "vertical");
 }
 
+function obtenerHabilidadesDeProyectos() {
+  const nombresUsados = new Set(
+    infoPersonal.proyectos.flatMap((proyecto) => proyecto.habilidades || [])
+  );
+  estadoProyectos.habilidadesSeleccionadas.forEach((nombre) =>
+    nombresUsados.add(nombre)
+  );
+
+  return infoPersonal.habilidades.filter(
+    (habilidad, indice, habilidades) =>
+      nombresUsados.has(habilidad.nombre) &&
+      habilidades.findIndex((item) => item.nombre === habilidad.nombre) === indice
+  );
+}
+
+function renderizarFiltrosProyectos() {
+  const filtros = obtenerHabilidadesDeProyectos();
+  const hayFiltros = estadoProyectos.habilidadesSeleccionadas.size > 0;
+
+  colocarHTML(
+    "#projectFilters",
+    `<div class="project-filters-heading">
+       <div>
+         <span>Filtrar por habilidad</span>
+         <small>Selecciona una o varias opciones</small>
+       </div>
+       <button type="button" class="project-filter-clear ${hayFiltros ? "visible" : ""}" data-clear-project-filters>
+         Limpiar filtros
+       </button>
+     </div>
+     <div class="project-filter-options">
+       ${filtros
+         .map((habilidad, indice) => {
+           const seleccionada = estadoProyectos.habilidadesSeleccionadas.has(habilidad.nombre);
+           return `<button type="button"
+                           class="project-skill-filter ${seleccionada ? "selected" : ""}"
+                           data-project-filter-index="${indice}"
+                           aria-pressed="${seleccionada}">
+                     <i class="bi ${habilidad.icono}" aria-hidden="true"></i>
+                     <span>${habilidad.nombre}</span>
+                   </button>`;
+         })
+         .join("")}
+     </div>`
+  );
+}
+
+function actualizarProyectosFiltrados(animar = true) {
+  renderizarFiltrosProyectos();
+  renderizarProyectosDetalle(animar);
+}
+
+function abrirProyectosPorHabilidad(nombreHabilidad) {
+  estadoProyectos.habilidadesSeleccionadas.clear();
+  estadoProyectos.habilidadesSeleccionadas.add(nombreHabilidad);
+  estadoProyectos.indiceDestacado = null;
+  actualizarProyectosFiltrados();
+  showDashboardView("proyectos-view");
+}
+
 function renderizarProyectos() {
   renderizarProyectosInicio();
+  renderizarFiltrosProyectos();
   renderizarProyectosDetalle();
 }
 
@@ -511,12 +652,15 @@ function destacarProyecto(indiceProyecto) {
     return;
   }
 
-  if (estadoProyectos.indiceDestacado === indiceProyecto) return;
-
   const actualizarProyecto = (animacionAlternativa = false) => {
-    estadoProyectos.indiceDestacado = indiceProyecto;
+    estadoProyectos.indiceDestacado =
+      estadoProyectos.indiceDestacado === indiceProyecto ? null : indiceProyecto;
     renderizarProyectosDetalle(animacionAlternativa);
-    obtenerElemento("#projectsContainer .project-detail-card")?.focus({
+    obtenerElemento(
+      estadoProyectos.indiceDestacado === null
+        ? `#projectsContainer [data-project-index="${indiceProyecto}"]`
+        : "#projectsContainer .project-detail-card"
+    )?.focus({
       preventScroll: true
     });
   };
@@ -558,6 +702,9 @@ function prepararContacto(contacto) {
 
   if (contacto.tipo === "email") return { texto, href: `mailto:${valorEnlace}` };
   if (contacto.tipo === "whatsapp") return { texto, href: `https://wa.me/${valorEnlace}` };
+  if (contacto.tipo === "tel") {
+    return { texto, href: `tel:${valorEnlace.replace(/[^\d+]/g, "")}` };
+  }
   if (contacto.tipo === "url") return { texto, href: valorEnlace };
   return { texto, href: "" };
 }
@@ -576,11 +723,27 @@ function renderizarContactos() {
             <article class="contact-card contact-card-email filter-item">
               ${informacion}
               <div class="contact-actions">
-                <button type="button" class="contact-action contact-action-copy" data-copy-email="${datos.texto}" aria-label="Copiar correo electrónico">
+                <button type="button" class="contact-action contact-action-copy" data-copy-value="${datos.texto}" data-copy-label="Correo electrónico" aria-label="Copiar correo electrónico">
                   <i class="bi bi-copy"></i><span></span>
                 </button>
                 <a href="${datos.href}" class="contact-action contact-action-send" aria-label="Enviar un correo electrónico">
                   <i class="bi bi-send"></i><span></span>
+                </a>
+              </div>
+            </article>
+          </div>`;
+        }
+
+        if (contacto.tipo === "tel") {
+          return `<div class="col-lg-6">
+            <article class="contact-card contact-card-phone filter-item">
+              ${informacion}
+              <div class="contact-actions contact-actions-phone" aria-label="Acciones del teléfono">
+                <button type="button" class="contact-action contact-action-copy" data-copy-value="${datos.texto}" data-copy-label="Número de teléfono" aria-label="Copiar número de teléfono">
+                  <i class="bi bi-copy"></i>
+                </button>
+                <a href="${datos.href}" class="contact-action contact-action-call" aria-label="Llamar al ${datos.texto}">
+                  <i class="bi bi-telephone-outbound"></i>
                 </a>
               </div>
             </article>
@@ -598,32 +761,47 @@ function renderizarContactos() {
   );
 }
 
-async function copiarCorreo(boton) {
-  const correo = boton?.dataset.copyEmail;
-  if (!correo) return;
+async function copiarContacto(boton) {
+  const valor = boton?.dataset.copyValue;
+  const etiqueta = boton?.dataset.copyLabel || "Dato";
+  if (!valor) return;
 
   const contenidoOriginal = boton.innerHTML;
 
   try {
+    let copiado = false;
+
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(correo);
-    } else {
+      try {
+        await Promise.race([
+          navigator.clipboard.writeText(valor),
+          new Promise((_, rechazar) =>
+            window.setTimeout(() => rechazar(new Error("Tiempo de copia agotado")), 800)
+          )
+        ]);
+        copiado = true;
+      } catch {
+        copiado = false;
+      }
+    }
+
+    if (!copiado) {
       const campoTemporal = document.createElement("textarea");
-      campoTemporal.value = correo;
+      campoTemporal.value = valor;
       campoTemporal.setAttribute("readonly", "");
       campoTemporal.style.position = "fixed";
       campoTemporal.style.opacity = "0";
       document.body.appendChild(campoTemporal);
       campoTemporal.select();
 
-      const copiado = document.execCommand("copy");
+      copiado = document.execCommand("copy");
       campoTemporal.remove();
-      if (!copiado) throw new Error("El navegador no permitió copiar el correo.");
+      if (!copiado) throw new Error("El navegador no permitió copiar el dato.");
     }
 
     boton.classList.add("copied");
     boton.innerHTML = '<i class="bi bi-check-lg"></i><span>Copiado</span>';
-    boton.setAttribute("aria-label", "Correo copiado");
+    boton.setAttribute("aria-label", `${etiqueta} copiado`);
   } catch (error) {
     console.error(error);
     boton.innerHTML = '<i class="bi bi-exclamation-circle"></i><span>Reintentar</span>';
@@ -632,7 +810,7 @@ async function copiarCorreo(boton) {
   window.setTimeout(() => {
     boton.classList.remove("copied");
     boton.innerHTML = contenidoOriginal;
-    boton.setAttribute("aria-label", "Copiar correo electrónico");
+    boton.setAttribute("aria-label", `Copiar ${etiqueta.toLocaleLowerCase("es")}`);
   }, 2200);
 }
 
@@ -711,6 +889,10 @@ function seleccionarEstudio(indiceEstudio) {
 }
 
 function agregarEventos() {
+  obtenerElementos("[data-theme-toggle]").forEach((botonTema) => {
+    botonTema.addEventListener("click", alternarTema);
+  });
+
   obtenerElementos(".sidebar-button").forEach((button) => {
     button.addEventListener("click", () => showDashboardView(button.dataset.view));
   });
@@ -727,8 +909,11 @@ function agregarEventos() {
     });
   });
 
-  activarSeleccionUnica(".home-skill");
-  activarSeleccionUnica(".skill-card");
+  obtenerElementos("[data-project-skill]").forEach((button) => {
+    button.addEventListener("click", () => {
+      abrirProyectosPorHabilidad(button.dataset.projectSkill);
+    });
+  });
 
   obtenerElementos("[data-flip-card]").forEach((tarjeta) => {
     tarjeta.addEventListener("click", () => {
@@ -738,6 +923,28 @@ function agregarEventos() {
   });
 
   document.getElementById("dashboardSearch")?.addEventListener("input", filterCurrentView);
+
+  obtenerElemento("#projectFilters")?.addEventListener("click", (event) => {
+    const botonLimpiar = event.target.closest("[data-clear-project-filters]");
+    if (botonLimpiar) {
+      estadoProyectos.habilidadesSeleccionadas.clear();
+      actualizarProyectosFiltrados();
+      return;
+    }
+
+    const botonFiltro = event.target.closest("[data-project-filter-index]");
+    if (!botonFiltro) return;
+
+    const habilidad = obtenerHabilidadesDeProyectos()[Number(botonFiltro.dataset.projectFilterIndex)];
+    if (!habilidad) return;
+
+    if (estadoProyectos.habilidadesSeleccionadas.has(habilidad.nombre)) {
+      estadoProyectos.habilidadesSeleccionadas.delete(habilidad.nombre);
+    } else {
+      estadoProyectos.habilidadesSeleccionadas.add(habilidad.nombre);
+    }
+    actualizarProyectosFiltrados();
+  });
 
   /*
    * La delegación de eventos permite que los clics sigan funcionando
@@ -799,9 +1006,8 @@ function agregarEventos() {
     }
   });
 
-  obtenerElemento("#contactsContainer")?.addEventListener("click", (event) => {
-    const botonCopiar = event.target.closest("[data-copy-email]");
-    if (botonCopiar) copiarCorreo(botonCopiar);
+  obtenerElementos("[data-copy-value]").forEach((botonCopiar) => {
+    botonCopiar.addEventListener("click", () => copiarContacto(botonCopiar));
   });
 
   obtenerElementos('a[href="#"]').forEach((link) => {
@@ -824,6 +1030,7 @@ function iniciarPortafolio() {
   }
 
   renderizarInformacionPersonal();
+  inicializarTema();
   renderizarMenu();
   renderizarEstudios();
   renderizarExperiencia();

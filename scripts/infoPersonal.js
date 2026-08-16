@@ -16,7 +16,7 @@ const infoPersonal = {
     descripcionCorta: "Desarrollo de aplicaciones web modernas.",
     frasePerfil: "Aprendizaje continuo",
     sobreMi: {
-      presentacion: "Soy Tecnóloga en Análisis y Desarrollo de Sistemas de Información y estudiante de Ingeniería de Sistemas. Desarrollo aplicaciones web y bases de datos con SQL, Python, PHP y JavaScript, enfocada en crear soluciones eficientes.",
+      presentacion: "Soy Tecnóloga en Análisis y Desarrollo de Sistemas de Información y estudiante de Ingeniería de Sistemas. Desarrollo aplicaciones web y bases de datos con SQL, Python, JavaScript y java, enfocada en crear soluciones eficientes.",
       datosPersonales: "Ingeniería de Sistemas (8.º semestre). Ubicada en Bogotá D. C., Colombia. <br> Edad: 26 años.",
       perfilProfesional: "Desarrolladora Full Stack Junior",
       motivacion: "Me impulsa la posibilidad de convertir ideas en soluciones reales que faciliten procesos y mejoren experiencias."
@@ -103,7 +103,8 @@ const infoPersonal = {
       periodo: "Junio 2025 - Enero 2026",
       meses: 8,
       ubicacion: "Bogotá, Colombia",
-      icono: "bi-code-square"
+      icono: "bi-code-square",
+      Responsabilidades: "Diseñé e implementé consultas SQL para la consulta, actualización y control de datos, garantizando la integridad de los registros y optimizando el rendimiento de los procesos del sistema. "
     },
     {
       cargo: "Auxiliar de análisis de datos",
@@ -111,7 +112,8 @@ const infoPersonal = {
       periodo: "Marzo 2024 - Mayo 2025",
       meses: 15,
       ubicacion: "Bogotá, Colombia",
-      icono: "bi-database-check"
+      icono: "bi-database-check",
+      Responsabilidades:"Gestioné y validé más de 10.000 registros en bases de datos relacionales mediante consultas SQL, garantizando la calidad y consistencia de la información utilizada por distintas áreas de la empresa"
     }
   ],
 
@@ -268,6 +270,7 @@ const infoPersonal = {
     { etiqueta: "Perfil profesional", textoFijo: "LinkedIn", enlace: "enlaces.linkedin", tipo: "url", icono: "bi-linkedin" },
     { etiqueta: "Repositorios", textoFijo: "GitHub", enlace: "enlaces.github", tipo: "url", icono: "bi-github" },
     { etiqueta: "Ubicación", texto: "persona.ubicacion", tipo: "texto", icono: "bi-geo-alt" },
-    { etiqueta: "WhatsApp", texto: "persona.telefono", enlace: "persona.whatsapp", tipo: "whatsapp", icono: "bi-whatsapp" }
+    { etiqueta: "WhatsApp", texto: "persona.telefono", enlace: "persona.whatsapp", tipo: "whatsapp", icono: "bi-whatsapp" },
+    { etiqueta: "Teléfono", texto: "persona.telefono", enlace: "persona.telefono", tipo: "tel", icono: "bi-telephone" }
   ]
 };
