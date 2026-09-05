@@ -146,10 +146,29 @@ const infoPersonal = {
     { nombre: "Análisis de sistemas", descripcion: "Análisis y diseño de soluciones tecnológicas", icono: "bi bi-diagram-3", mostrarEnInicio: false },
     { nombre: "Desarrollo web", descripcion: "Desarrollo de aplicaciones y sitios web", icono: "bi bi-code-slash", mostrarEnInicio: false },
     { nombre: "Metodologías ágiles", descripcion: "Trabajo colaborativo mediante metodologías ágiles", icono: "bi bi-kanban", mostrarEnInicio: false },
-    { nombre: "Excel", descripcion: "Análisis, organización y gestión de datos", icono: "bi bi-file-earmark-spreadsheet", mostrarEnInicio: false }
+    { nombre: "Excel", descripcion: "Análisis, organización y gestión de datos", icono: "bi bi-file-earmark-spreadsheet", mostrarEnInicio: false },
+    { nombre: "Pytest", descripcion: "Automatización de pruebas unitarias e integración backend (QA)", icono: "bi bi-check2-square", mostrarEnInicio: true },
+    { nombre: "Postman", descripcion: "Pruebas, validación y documentación de endpoints HTTP/REST", icono: "bi bi-send", mostrarEnInicio: true },
+    { nombre: "FastAPI", descripcion: "Creación de APIs REST de alto rendimiento y documentación interactiva", icono: "bi bi-lightning-charge", mostrarEnInicio: true }
   ],
 
   proyectos: [
+    {
+      nombre: "Reserva · Sistema Central de Gestión & Analítica",
+      nombreInicio: "Reservas,Gestión & Analítica",
+      categoria: "Desarrollo aplicaciones",
+      descripcion: `
+        Sistema integral de gestión de reservas desarrollado como una API REST robusta en Python (FastAPI/Uvicorn), respaldado por una base de datos relacional SQL optimizada y alineado con buenas prácticas de Testing (QA).<br>
+        <strong>Mi aporte:</strong> Diseñé el modelo de datos relacional (DDL/DML/TCL), desarrollé la API REST para la gestión de reservas/transacciones, e implementé suites de pruebas automatizadas con Pytest.<br>
+        <strong>Resultado:</strong> Garantiza la integridad de datos transaccionales, elimina la duplicidad de reservas mediante transacciones SQL y automatiza la validación mediante pruebas de integración.
+        `,
+      imagen: "assets/hogarAP.gif",
+      video: "",
+      enlace: "",
+      github: "https://github.com/Nathalia010/Sistema-Central-de-Gesti-n",
+      habilidades: ["Python", "FastAPI", "MySQL", "Pytest", "Postman", "GitHub", "Docker", ""],
+      mostrarEnInicio: false
+    },
     {
       nombre: "Plataforma de adopción de mascotas",
       nombreInicio: "Adopción de mascotas",
@@ -163,7 +182,7 @@ const infoPersonal = {
       video: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
       enlace: "https://nathalia010.github.io/hogarAmigoPeludo-SGL/index.html",
       github: "https://github.com/Nathalia010/hogarAmigoPeludo-SGL",
-      habilidades: ["HTML", "CSS", "JavaScript", "Bootstrap", "GitHub"],
+      habilidades: ["HTML", "CSS", "JavaScript", "Bootstrap", "GitHub", "Postman"],
       mostrarEnInicio: true
     },
     {

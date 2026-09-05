@@ -2708,5 +2708,5 @@ a.contact-card:hover {
 :root[data-theme="light"] .information-content .study-skill-tooltip,
 :root[data-theme="light"] .information-content .study-skill-tooltip::after {
   color: #ffffff;
-  background: #2d4271;
+  background: #172033;
 }
