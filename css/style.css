@@ -1275,8 +1275,7 @@ img {
   border: 2px solid var(--blue);
   border-radius: 50%;
 
-  box-shadow:
-    7px 0 0 -4px var(--purple);
+  box-shadow: none;
 }
 
 .home-skill-information {
@@ -1330,6 +1329,7 @@ img {
 
 .project-placeholder {
   position: relative;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -1347,6 +1347,39 @@ img {
     );
 }
 
+.project-placeholder .project-image,
+.horizontal-image .project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.horizontal-image .project-image {
+  border-radius: inherit;
+}
+
+.project-preview-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: none;
+  background: #000000;
+  border: 4px solid #000000;
+  border-radius: inherit;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.project-placeholder .project-preview-video {
+  width: 100%;
+  height: 100%;
+}
+
+.horizontal-image .project-preview-video {
+  width: 100%;
+  height: 100%;
+}
+
 .project-placeholder > i {
   margin-bottom: 5px;
   font-size: 30px;
@@ -1361,6 +1394,7 @@ img {
   top: 50%;
   left: 50%;
 
+  z-index: 2;
   display: grid;
   width: 42px;
   height: 42px;
@@ -1386,7 +1420,7 @@ img {
 
 .project-line span {
   display: block;
-  width: 52%;
+  width: 100%;
   height: 100%;
 
   background:
@@ -1634,6 +1668,9 @@ img {
 }
 
 .skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   min-height: 175px;
   padding: 22px;
 
@@ -1703,6 +1740,38 @@ img {
   margin: 0;
   color: var(--text-secondary);
   font-size: 12px;
+}
+
+.skill-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 15px;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid currentColor;
+  border-radius: 20px;
+}
+
+.skill-level::before {
+  width: 6px;
+  height: 6px;
+  content: "";
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.skill-level-basico {
+  color: #4daef7;
+}
+
+.skill-level-intermedio {
+  color: #a981ff;
+}
+
+.skill-level-avanzado {
+  color: #55d697;
 }
 
 
@@ -2047,8 +2116,10 @@ img {
   align-items: center;
   gap: 19px;
 
+  min-width: 0;
   min-height: 150px;
   padding: 18px;
+  overflow: hidden;
 
   background: var(--card-background);
   border-radius: 17px;
@@ -2068,6 +2139,8 @@ img {
 }
 
 .horizontal-image {
+  position: relative;
+  overflow: hidden;
   display: grid;
   width: 120px;
   height: 110px;
@@ -2078,6 +2151,10 @@ img {
 
   background: var(--card-secondary);
   border-radius: 13px;
+}
+
+.horizontal-project-card > div:last-child {
+  min-width: 0;
 }
 
 .horizontal-project-card h2 {

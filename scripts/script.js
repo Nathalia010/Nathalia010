@@ -358,14 +358,20 @@ function renderizarHabilidades() {
   colocarHTML(
     "#skillsContainer",
     infoPersonal.habilidades
-      .map(
-        (habilidad) =>
-          `<button type="button" class="skill-card filter-item" data-project-skill="${habilidad.nombre}">
+      .map((habilidad) => {
+        const nivel = habilidad.nivel || "Intermedio";
+        const claseNivel = nivel
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLocaleLowerCase("es");
+
+        return `<button type="button" class="skill-card filter-item" data-project-skill="${habilidad.nombre}">
              <i class="bi ${habilidad.icono}"></i>
              <h2>${habilidad.nombre}</h2>
              <p>${habilidad.descripcion}</p>
-           </button>`
-      )
+             <span class="skill-level skill-level-${claseNivel}" aria-label="Nivel ${nivel}">Nivel: ${nivel}</span>
+           </button>`;
+      })
       .join("")
   );
 }
@@ -376,7 +382,64 @@ RENDERIZAR PROYECTOS
 =========================================================
 */
 
+function obtenerIdYoutube(enlace) {
+  if (!enlace) return "";
+
+  try {
+    const url = new URL(enlace, window.location.href);
+    const host = url.hostname.replace(/^www\./, "");
+    let id = "";
+
+    if (host === "youtu.be") {
+      id = url.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (host === "youtube.com" || host.endsWith(".youtube.com")) {
+      if (url.pathname === "/watch") {
+        id = url.searchParams.get("v") || "";
+      } else {
+        const coincidencia = url.pathname.match(/^\/(?:embed|shorts|live)\/([^/?]+)/);
+        id = coincidencia?.[1] || "";
+      }
+    }
+
+    return /^[\w-]{6,}$/.test(id) ? id : "";
+  } catch {
+    return "";
+  }
+}
+
 function crearImagenProyecto(proyecto, claseImagen = "project-image", texto = "Imagen") {
+  const idYoutube = obtenerIdYoutube(proyecto.video);
+
+  if (idYoutube) {
+    const parametros = new URLSearchParams({
+      autoplay: "1",
+      mute: "1",
+      controls: "0",
+      loop: "1",
+      playlist: idYoutube,
+      start: "0",
+      end: "60",
+      playsinline: "1",
+      rel: "0",
+      modestbranding: "1",
+      iv_load_policy: "3",
+      disablekb: "1",
+      fs: "0",
+      showinfo: "0"
+    });
+
+    return `<iframe
+              src="https://www.youtube-nocookie.com/embed/${idYoutube}?${parametros}"
+              title="Vista previa silenciosa de ${proyecto.nombre}"
+              class="${claseImagen} project-preview-video"
+              frameborder="0"
+              loading="lazy"
+              tabindex="-1"
+              allow="autoplay; encrypted-media"
+              aria-hidden="true">
+            </iframe>`;
+  }
+
   if (proyecto.imagen) {
     return `<img src="${proyecto.imagen}" alt="${proyecto.nombre}" class="${claseImagen}">`;
   }
@@ -399,19 +462,10 @@ function crearVideoProyecto(proyecto) {
     `;
   }
 
-  let url = proyecto.video;
-
-  // Convertir enlaces de YouTube al formato embed
-  if (url.includes("youtube.com/watch?v=")) {
-    const id = url.split("watch?v=")[1].split("&")[0];
-    url = `https://www.youtube.com/embed/${id}`;
-  }
-
-  // Convertir enlaces cortos youtu.be
-  if (url.includes("youtu.be/")) {
-    const id = url.split("youtu.be/")[1].split("?")[0];
-    url = `https://www.youtube.com/embed/${id}`;
-  }
+  const idYoutube = obtenerIdYoutube(proyecto.video);
+  const url = idYoutube
+    ? `https://www.youtube.com/embed/${idYoutube}?start=0&end=60&rel=0`
+    : proyecto.video;
 
   return `
     <iframe

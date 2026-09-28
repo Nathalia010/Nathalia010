@@ -118,41 +118,68 @@ const infoPersonal = {
   ],
 
   habilidades: [
-    { nombre: "HTML", nombreInicio: "HTML y CSS", descripcion: "Estructura web", descripcionInicio: "Diseño web", icono: "bi-filetype-html", mostrarEnInicio: true },
-    { nombre: "CSS", descripcion: "Diseño responsivo", icono: "bi-filetype-css", mostrarEnInicio: false },
-    { nombre: "JavaScript", descripcion: "Desarrollo frontend", icono: "bi-filetype-js", mostrarEnInicio: true },
-    { nombre: "Bootstrap", descripcion: "Interfaces responsivas", icono: "bi-bootstrap", mostrarEnInicio: false },
-    { nombre: "Python", nombreInicio: "Python y SQL", descripcion: "Automatización", icono: "bi-filetype-py", mostrarEnInicio: true },
-    { nombre: "PHP", descripcion: "Desarrollo backend", icono: "bi-filetype-php", mostrarEnInicio: false },
-    { nombre: "Java", descripcion: "Programación orientada a objetos", icono: "bi-cup-hot", mostrarEnInicio: true },
-    { nombre: "MySQL", nombreInicio: "SQL y MySQL", descripcion: "Bases de datos", icono: "bi-database", mostrarEnInicio: false },
-    { nombre: "Git", descripcion: "Control de versiones", icono: "bi-git", mostrarEnInicio: false },
-    { nombre: "GitHub", descripcion: "Repositorios", icono: "bi-github", mostrarEnInicio: false },
-    { nombre: "Power BI", descripcion: "Visualización de datos", icono: "bi-bar-chart", mostrarEnInicio: false },
-    { nombre: "ETL", descripcion: "Transformación de datos", icono: "bi-diagram-3", mostrarEnInicio: false },
-    { nombre: "API", descripcion: "consumir una api", icono: "bi bi-cloud", mostrarEnInicio: false },
-    { nombre: "Node.js", descripcion: "Backend con Node.js", icono: "bi bi-hdd-network", mostrarEnInicio: false },
-    { nombre: "LocalStorage", descripcion: "Almacenamiento en el navegador", icono: "bi bi-database", mostrarEnInicio: false },
-    { nombre: "Fetch API", descripcion: "Consumo de APIs mediante peticiones HTTP", icono: "bi bi-cloud-download", mostrarEnInicio: false },
-    { nombre: "DOM", descripcion: "Manipulación dinámica del contenido HTML", icono: "bi bi-diagram-3", mostrarEnInicio: false },
-    { nombre: "Java Swing", descripcion: "Desarrollo de interfaces gráficas de escritorio", icono: "bi bi-window", mostrarEnInicio: false },
-    { nombre: "MVC", descripcion: "Arquitectura Modelo - Vista - Controlador", icono: "bi bi-diagram-2", mostrarEnInicio: false },
-    { nombre: "POO", descripcion: "Programación Orientada a Objetos", icono: "bi bi-boxes", mostrarEnInicio: false },
-    { nombre: "Responsive Design", descripcion: "Diseño adaptable para diferentes dispositivos", icono: "bi bi-phone", mostrarEnInicio: false },
-    { nombre: "Inteligencia Artificial", descripcion: "Uso de IA como apoyo para el desarrollo y optimización de aplicaciones", icono: "bi bi-stars", mostrarEnInicio: false },
-    { nombre: "Node.js", descripcion: "Entorno de ejecución para desarrollar aplicaciones del lado del servidor", icono: "bi bi-node-plus", mostrarEnInicio: false },
-    { nombre: "Docker", descripcion: "Contenerización y despliegue de aplicaciones", icono: "bi bi-box-seam", mostrarEnInicio: false },
-    { nombre: "AWS", descripcion: "Servicios de computación y despliegue en la nube", icono: "bi bi-cloud", mostrarEnInicio: false },
-    { nombre: "Análisis de sistemas", descripcion: "Análisis y diseño de soluciones tecnológicas", icono: "bi bi-diagram-3", mostrarEnInicio: false },
-    { nombre: "Desarrollo web", descripcion: "Desarrollo de aplicaciones y sitios web", icono: "bi bi-code-slash", mostrarEnInicio: false },
-    { nombre: "Metodologías ágiles", descripcion: "Trabajo colaborativo mediante metodologías ágiles", icono: "bi bi-kanban", mostrarEnInicio: false },
-    { nombre: "Excel", descripcion: "Análisis, organización y gestión de datos", icono: "bi bi-file-earmark-spreadsheet", mostrarEnInicio: false },
-    { nombre: "Pytest", descripcion: "Automatización de pruebas unitarias e integración backend (QA)", icono: "bi bi-check2-square", mostrarEnInicio: true },
-    { nombre: "Postman", descripcion: "Pruebas, validación y documentación de endpoints HTTP/REST", icono: "bi bi-send", mostrarEnInicio: true },
-    { nombre: "FastAPI", descripcion: "Creación de APIs REST de alto rendimiento y documentación interactiva", icono: "bi bi-lightning-charge", mostrarEnInicio: true }
+    { nombre: "HTML", nombreInicio: "HTML y CSS", descripcion: "Estructura web", descripcionInicio: "Diseño web", icono: "bi-filetype-html", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "CSS", descripcion: "Diseño responsivo", icono: "bi-filetype-css", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "JavaScript", descripcion: "Desarrollo frontend", icono: "bi-filetype-js", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "Bootstrap", descripcion: "Interfaces responsivas", icono: "bi-bootstrap", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Python", nombreInicio: "Python y SQL", descripcion: "Automatización", icono: "bi-filetype-py", nivel: "Básico", mostrarEnInicio: true },
+    { nombre: "PHP", descripcion: "Desarrollo backend", icono: "bi-filetype-php", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "Java", descripcion: "Programación orientada a objetos", icono: "bi-cup-hot", nivel: "Básico", mostrarEnInicio: true },
+    { nombre: "MySQL", nombreInicio: "SQL y MySQL", descripcion: "Bases de datos", icono: "bi-database", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Git", descripcion: "Control de versiones", icono: "bi-git", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "GitHub", descripcion: "Repositorios", icono: "bi-github", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Power BI", descripcion: "Visualización de datos", icono: "bi-bar-chart", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "ETL", descripcion: "Transformación de datos", icono: "bi-diagram-3", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "API", descripcion: "consumir una api", icono: "bi bi-cloud", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Node.js", descripcion: "Backend con Node.js", icono: "bi bi-hdd-network", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "LocalStorage", descripcion: "Almacenamiento en el navegador", icono: "bi bi-database", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Fetch API", descripcion: "Consumo de APIs mediante peticiones HTTP", icono: "bi bi-cloud-download", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "DOM", descripcion: "Manipulación dinámica del contenido HTML", icono: "bi bi-diagram-3", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Java Swing", descripcion: "Desarrollo de interfaces gráficas de escritorio", icono: "bi bi-window", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "MVC", descripcion: "Arquitectura Modelo - Vista - Controlador", icono: "bi bi-diagram-2", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "POO", descripcion: "Programación Orientada a Objetos", icono: "bi bi-boxes", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "Responsive Design", descripcion: "Diseño adaptable para diferentes dispositivos", icono: "bi bi-phone", nivel: "Avanzado", mostrarEnInicio: false },
+    { nombre: "Inteligencia Artificial", descripcion: "Uso de IA como apoyo para el desarrollo y optimización de aplicaciones", icono: "bi bi-stars", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Node.js", descripcion: "Entorno de ejecución para desarrollar aplicaciones del lado del servidor", icono: "bi bi-node-plus", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "Docker", descripcion: "Contenerización y despliegue de aplicaciones", icono: "bi bi-box-seam", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "AWS", descripcion: "Servicios de computación y despliegue en la nube", icono: "bi bi-cloud", nivel: "Básico", mostrarEnInicio: false },
+    { nombre: "Análisis de sistemas", descripcion: "Análisis y diseño de soluciones tecnológicas", icono: "bi bi-diagram-3", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Desarrollo web", descripcion: "Desarrollo de aplicaciones y sitios web", icono: "bi bi-code-slash", nivel: "Avanzado", mostrarEnInicio: false },
+    { nombre: "Metodologías ágiles", descripcion: "Trabajo colaborativo mediante metodologías ágiles", icono: "bi bi-kanban", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Excel", descripcion: "Análisis, organización y gestión de datos", icono: "bi bi-file-earmark-spreadsheet", nivel: "Avanzado", mostrarEnInicio: false },
+    { nombre: "Pytest", descripcion: "Automatización de pruebas unitarias e integración backend (QA)", icono: "bi bi-check2-square", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "Postman", descripcion: "Pruebas, validación y documentación de endpoints HTTP/REST", icono: "bi bi-send", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "FastAPI", descripcion: "Creación de APIs REST de alto rendimiento y documentación interactiva", icono: "bi bi-lightning-charge", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "n8n", descripcion: "Automatización de procesos y orquestación de workflows", icono: "bi bi-diagram-3-fill", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "Google Gemini", descripcion: "Integración de modelos de IA para interpretar lenguaje natural y ejecutar acciones", icono: "bi bi-stars", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "WhatsApp Business Cloud", descripcion: "Integración de mensajería automatizada mediante la API oficial de WhatsApp", icono: "bi bi-whatsapp", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "Google Calendar API", descripcion: "Creación, consulta y gestión automatizada de eventos de calendario", icono: "bi bi-calendar-event", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Google Sheets", descripcion: "Registro y gestión automatizada de información en hojas de cálculo", icono: "bi bi-file-earmark-spreadsheet", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Data Tables", descripcion: "Almacenamiento persistente de datos dentro de workflows de automatización", icono: "bi bi-table", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Webhooks", descripcion: "Comunicación entre servicios y activación de automatizaciones mediante eventos HTTP", icono: "bi bi-broadcast", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "REST API", descripcion: "Integración entre servicios mediante peticiones HTTP y APIs REST", icono: "bi bi-cloud-arrow-down", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Automatización", descripcion: "Diseño de flujos automáticos para integrar servicios y reducir tareas manuales", icono: "bi bi-gear-wide-connected", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "Agentes IA", descripcion: "Diseño de agentes capaces de interpretar solicitudes y ejecutar herramientas automáticamente", icono: "bi bi-robot", nivel: "Intermedio", mostrarEnInicio: true }
+
   ],
 
   proyectos: [
+   {
+      nombre: "Peper Assistant · Automatización Personal con IA",
+      nombreInicio: "Peper Assistant",
+      categoria: "Automatización e IA",
+      descripcion: `
+          Asistente personal inteligente desarrollado con n8n, WhatsApp Business Cloud y Google Gemini, diseñado para gestionar tareas cotidianas mediante lenguaje natural.<br>
+          <strong>Mi aporte:</strong> Diseñé la arquitectura completa de automatización, configuré la integración con WhatsApp Business Cloud, construí el agente de IA en n8n y desarrollé flujos para registrar gastos, gestionar eventos en Google Calendar y programar recordatorios automáticos mediante workflows con nodos Wait.<br>
+          <strong>Resultado:</strong> El sistema permite centralizar desde WhatsApp la gestión de finanzas personales, agenda y recordatorios, almacenando información de forma persistente y ejecutando acciones automáticas sin intervención manual.
+        `,
+      // imagen: "assets/peper.gif",
+      video: "https://www.youtube.com/watch?v=Sd2UNtQnjhs",
+      enlace: "https://github.com/Nathalia010/n8n-AsistentePeper",
+      github: "https://github.com/Nathalia010/n8n-AsistentePeper",
+      habilidades: ["n8n","Google Gemini","WhatsApp Business Cloud","Google Calendar API","Google Sheets","Data Tables","Webhooks","REST API","Automatización","Agentes IA"],
+      mostrarEnInicio: true
+    },
     {
       nombre: "Reserva · Sistema Central de Gestión & Analítica",
       nombreInicio: "Reservas,Gestión & Analítica",
@@ -162,9 +189,9 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Diseñé el modelo de datos relacional (DDL/DML/TCL), desarrollé la API REST para la gestión de reservas/transacciones, e implementé suites de pruebas automatizadas con Pytest.<br>
         <strong>Resultado:</strong> Garantiza la integridad de datos transaccionales, elimina la duplicidad de reservas mediante transacciones SQL y automatiza la validación mediante pruebas de integración.
         `,
-      imagen: "assets/hogarAP.gif",
+      imagen: "",
       video: "",
-      enlace: "",
+      enlace: "https://github.com/Nathalia010/Sistema-Central-de-Gesti-n",
       github: "https://github.com/Nathalia010/Sistema-Central-de-Gesti-n",
       habilidades: ["Python", "FastAPI", "MySQL", "Pytest", "Postman", "GitHub", "Docker", ""],
       mostrarEnInicio: false
@@ -178,7 +205,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong>  desarrollé el backend, implementé autenticación de la api de la Nasa y Guardar favoritos. <br>
         <strong>Resultado:</strong> Centraliza la información, reduce el trabajo manual y mejora el seguimiento del proceso de adopción.
         `,
-      imagen: "assets/hogarAP.gif",
+      // imagen: "assets/hogarAP.gif",
       video: "https://www.youtube.com/watch?v=ecGg3PdtQg8",
       enlace: "https://nathalia010.github.io/hogarAmigoPeludo-SGL/index.html",
       github: "https://github.com/Nathalia010/hogarAmigoPeludo-SGL",
@@ -193,7 +220,7 @@ const infoPersonal = {
         Aplicación web que consume la API de la NASA para mostrar imágenes e información astronómica en tiempo real. <br>
         <strong>Mi aporte:</strong> Implementé la integración con la API mediante JavaScript, el manejo de respuestas asíncronas, el tratamiento de errores y una interfaz responsive. <br>
         <strong>Resultado:</strong> Facilita la consulta de contenido espacial con una experiencia de usuario clara y dinámica.        `,
-      imagen: "assets/apiNasa1.gif",
+      // imagen: "assets/apiNasa1.gif",
       video: "https://youtu.be/JTO6g5usE10",
       enlace: "https://jua039.github.io/api_nasa/",
       github: "https://github.com/jua039/api_nasa",
@@ -209,7 +236,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Implementé el consumo de la API REST utilizando JavaScript, gestioné peticiones asíncronas con Fetch API y async/await, desarrollé el manejo de errores, la actualización dinámica del contenido y una interfaz adaptable a diferentes dispositivos. <br>
         <strong>Resultado:</strong> Se obtuvo una aplicación interactiva que facilita la exploración de información de Pokémon, fortaleciendo conocimientos en consumo de APIs, manipulación del DOM y desarrollo web responsive.
       `,
-      imagen: "assets/web Pokemon.gif",
+      // imagen: "assets/web Pokemon.gif",
       video: "https://youtu.be/Gkxn5ldsd9U",
       enlace: "https://nathalia010.github.io/25.2WebPokemon/",
       github: "https://github.com/Nathalia010/25.2WebPokemon",
@@ -224,7 +251,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Participé en el desarrollo de la interfaz gráfica, la implementación de la lógica de negocio, la gestión de eventos y la organización del proyecto bajo el patrón MVC, aplicando principios de programación orientada a objetos. <br>
         <strong>Resultado:</strong> Se obtuvo una aplicación funcional y estructurada que facilita la administración de contactos, fortaleciendo conocimientos en Java, arquitectura MVC y desarrollo de aplicaciones de escritorio.
       `,
-      imagen: "assets/agenda.gif",
+      // imagen: "assets/agenda.gif",
       video: "https://youtu.be/kHyILBwpS9E",
       enlace: "https://github.com/Ale20222/agenda-telefonica/tree/main",
       github: "https://github.com/Ale20222/agenda-telefonica/tree/main",
@@ -240,7 +267,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Participé en el diseño y desarrollo del frontend, implementé la navegación entre secciones, la visualización dinámica de productos,carrito de compras y una interfaz adaptable a dispositivos móviles. <br>
         <strong>Resultado:</strong> Se obtuvo un prototipo funcional de e-commerce que aplica buenas prácticas de desarrollo web, organización del código y diseño de interfaces centradas en la experiencia del usuario.
       `,
-      imagen: "assets/TrendyShop.gif",
+      // imagen: "assets/TrendyShop.gif",
       video: "https://youtu.be/dT264Mre3bE",
       enlace: "https://github.com/girleykinnux-pixel/-trendyShop",
       github: "https://github.com/girleykinnux-pixel/-trendyShop",
@@ -256,7 +283,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Desarrollé la lógica de gestión de tareas utilizando JavaScript, implementé la manipulación dinámica del DOM, el manejo de eventos, el almacenamiento de datos con LocalStorage y un contador en tiempo real que muestra el número total de tareas y las completadas. Además, diseñé una interfaz responsive enfocada en mejorar la experiencia del usuario. <br>
         <strong>Resultado:</strong> Se obtuvo una aplicación funcional que facilita la organización de actividades diarias, aplicando buenas prácticas de desarrollo web, persistencia de datos y programación interactiva.
       `,
-      imagen: "assets/taskManager.gif",
+      // imagen: "assets/taskManager.gif",
       video: "https://youtu.be/WdM8hu1aQ3w",
       enlace: "https://nathalia010.github.io/19.2Interaccion/",
       github: "https://github.com/Nathalia010/19.2Interaccion",
@@ -272,7 +299,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Desarrollé la lógica de consulta y visualización de información utilizando JavaScript, implementé el consumo de una API meteorológica mediante Fetch y programación asíncrona, la manipulación dinámica del DOM y la actualización de los datos según la ciudad seleccionada. Además, utilicé inteligencia artificial como herramienta de apoyo para optimizar el desarrollo, resolver problemas y mejorar la funcionalidad de la aplicación. <br>
         <strong>Resultado:</strong> Se obtuvo una aplicación funcional e interactiva que permite consultar fácilmente las condiciones meteorológicas y el pronóstico, aplicando conceptos de desarrollo web, consumo de APIs, programación asíncrona, manipulación del DOM e integración de herramientas de inteligencia artificial.
       `,
-      imagen: "assets/#",
+      // imagen: "assets/#",
       video: "https://www.youtube.com/watch?v=atL2yFTDd44&t=1s",
       enlace: "https://nathalia010.github.io/Clima-IA/",
       github: "https://github.com/Nathalia010/Clima-IA",
