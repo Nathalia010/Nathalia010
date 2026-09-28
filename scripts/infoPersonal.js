@@ -272,7 +272,7 @@ const infoPersonal = {
         <strong>Mi aporte:</strong> Desarrollé la lógica de consulta y visualización de información utilizando JavaScript, implementé el consumo de una API meteorológica mediante Fetch y programación asíncrona, la manipulación dinámica del DOM y la actualización de los datos según la ciudad seleccionada. Además, utilicé inteligencia artificial como herramienta de apoyo para optimizar el desarrollo, resolver problemas y mejorar la funcionalidad de la aplicación. <br>
         <strong>Resultado:</strong> Se obtuvo una aplicación funcional e interactiva que permite consultar fácilmente las condiciones meteorológicas y el pronóstico, aplicando conceptos de desarrollo web, consumo de APIs, programación asíncrona, manipulación del DOM e integración de herramientas de inteligencia artificial.
       `,
-      imagen: "assets/taskManager.gif",
+      imagen: "assets/#",
       video: "https://www.youtube.com/watch?v=atL2yFTDd44&t=1s",
       enlace: "https://nathalia010.github.io/Clima-IA/",
       github: "https://github.com/Nathalia010/Clima-IA",
