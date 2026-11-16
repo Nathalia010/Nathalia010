@@ -104,7 +104,14 @@ const infoPersonal = {
       meses: 8,
       ubicacion: "Bogotá, Colombia",
       icono: "bi-code-square",
-      Responsabilidades: "Diseñé e implementé consultas SQL para la consulta, actualización y control de datos, garantizando la integridad de los registros y optimizando el rendimiento de los procesos del sistema. "
+      Responsabilidades: "Diseñé e implementé consultas SQL para la consulta, actualización y control de datos, garantizando la integridad de los registros y optimizando el rendimiento de los procesos del sistema. ",
+      funciones: [
+        "Desarrollé una aplicación web conectada a bases de datos relacionales, mejorando la gestión y validación de información institucional.",
+        "Diseñé consultas SQL para consultar, transformar, actualizar y controlar datos, garantizando su integridad y optimizando los procesos.",
+        "Validación y control de información para garantizar la confiabilidad de los datos utilizados por diferentes áreas de la organización.",
+        "Desarrollo de scripts en Python para automatizar tareas y facilitar el procesamiento de información.",
+        "Elaboración de documentación técnica y funcional de los procesos y funcionalidades del sistema"
+      ]
     },
     {
       cargo: "Auxiliar de análisis de datos",
@@ -113,7 +120,80 @@ const infoPersonal = {
       meses: 15,
       ubicacion: "Bogotá, Colombia",
       icono: "bi-database-check",
-      Responsabilidades:"Gestioné y validé más de 10.000 registros en bases de datos relacionales mediante consultas SQL, garantizando la calidad y consistencia de la información utilizada por distintas áreas de la empresa"
+      Responsabilidades:"Gestioné y validé más de 10.000 registros en bases de datos relacionales mediante consultas SQL, garantizando la calidad y consistencia de la información utilizada por distintas áreas de la empresa",
+      funciones: [
+        "Gestioné y validé más de 10.000 registros con SQL y procesos ETL, asegurando la calidad e integridad de la información.",
+        "Apoyé la implementación de controles de ciberseguridad y la administración de usuarios, accesos y permisos.",
+        "Realicé soporte básico en Linux y documenté procedimientos de seguridad y gestión de accesos.",
+        "Seguimiento a novedades y requerimientos de información, identificando inconsistencias y apoyando la toma de decisiones",
+        "Elaboré reportes y consolidé información para facilitar el seguimiento y control de procesos internos"
+      ]
+    }
+  ],
+
+  otrasExperiencias: [
+    {
+      empresa: "Huellitas CatDog",
+      cargo: "Encargada de tienda de artículos para mascotas",
+      periodo: "Sep. 2018 – Jun. 2019",
+      icono: "bi-shop",
+      funciones: [
+        "Abrí y cerré el local, verificando diariamente el orden y la seguridad de la tienda.",
+        "Atendí y asesoré a los clientes en la compra de alimentos, accesorios y artículos para mascotas.",
+        "Controlé el inventario, revisé existencias y apoyé la reposición oportuna de productos.",
+        "Realicé la apertura, el manejo y el cierre de caja, verificando ingresos y ventas del día.",
+        "Organicé la mercancía y mantuve limpios y presentables los espacios de exhibición y atención."
+      ]
+    },
+    {
+      empresa: "Grupo Éxito",
+      cargo: "Auxiliar de cocina",
+      periodo: "Jul. 2019 – Jul. 2020",
+      icono: "bi-egg-fried",
+      funciones: [
+        "Preparé y manipulé alimentos siguiendo estándares de calidad.",
+        "Organicé insumos y coordiné tareas en momentos de alta demanda.",
+        "Cumplí tiempos de entrega mediante trabajo colaborativo.",
+        "Coordinación de actividades y distribución de tareas dentro del área.",
+        "Gestión eficiente del tiempo, priorización de actividades y trabajo colaborativo."
+      ]
+    },
+    {
+      empresa: "RobinFood",
+      cargo: "Auxiliar de punto y caja",
+      periodo: "Abr. – Sep. 2021",
+      icono: "bi-cart",
+      funciones: [
+        "Atendí clientes y gestioné pedidos y operaciones de caja.",
+        "Control y seguimiento de inventarios, verificando existencias, entradas y salidas de productos.",
+        "Gestión de pedidos a proveedores y seguimiento de requerimientos de abastecimiento.",
+        "Apoyo en el control de gastos operativos, gestión de pagos de servicios y organización de información administrativa."
+      ]
+    },
+    {
+      empresa: "Cine Colombia",
+      cargo: "Auxiliar operativo",
+      periodo: "Oct. 2021 – Ene. 2022",
+      icono: "bi-film",
+      funciones: [
+        "Orienté y atendí clientes, incluyendo grupos numerosos.",
+        "Apoyé actividades operativas y resolví novedades en diferentes áreas.",
+        "Fortalecí la comunicación efectiva, la adaptabilidad y el trabajo colaborativo.",
+        "Resolución de novedades y comunicación efectiva con equipos de trabajo."
+      ]
+    },
+    {
+      empresa: "Avant Assurance",
+      cargo: "Asesora de call center",
+      periodo: "Ene. – Feb. 2023",
+      icono: "bi-headset",
+      funciones: [
+        "Atendí y asesoré clientes por canales telefónicos.",
+        "Gestioné solicitudes, seguimiento y solución de requerimientos.",
+        "Manejé situaciones difíciles y cumplí indicadores de servicio.",
+        "Manejo y actualización de información de clientes.",
+        "Análisis de necesidades y comunicación de soluciones."
+      ]
     }
   ],
 
@@ -175,6 +255,7 @@ const infoPersonal = {
         `,
       // imagen: "assets/peper.gif",
       video: "https://www.youtube.com/watch?v=Sd2UNtQnjhs",
+      videoEmbed: "https://www.youtube.com/embed/Sd2UNtQnjhs?si=h0Iq1SQSH-usFIQm",
       enlace: "https://github.com/Nathalia010/n8n-AsistentePeper",
       github: "https://github.com/Nathalia010/n8n-AsistentePeper",
       habilidades: ["n8n","Google Gemini","WhatsApp Business Cloud","Google Calendar API","Google Sheets","Data Tables","Webhooks","REST API","Automatización","Agentes IA"],

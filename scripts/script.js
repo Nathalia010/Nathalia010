@@ -14,7 +14,9 @@ const estadoProyectos = {
   indiceDestacado: 0,
   inicioCarrusel: 0,
   cantidadVisible: 3,
-  habilidadesSeleccionadas: new Set()
+  habilidadesSeleccionadas: new Set(),
+  filtrosAbiertos: false,
+  busquedaFiltro: ""
 };
 
 /* Permite recordar qué estudio se abrió desde la tarjeta de Inicio. */
@@ -302,13 +304,25 @@ RENDERIZAR EXPERIENCIA LABORAL
 =========================================================
 */
 
+function crearFuncionesExperiencia(funciones = []) {
+  return `<div class="experience-functions" hidden>
+            <strong>Funciones principales</strong>
+            <ul>${funciones.map((funcion) => `<li>${funcion}</li>`).join("")}</ul>
+          </div>`;
+}
+
 function renderizarExperiencia() {
   colocarHTML(
     "#experienceContainer",
     infoPersonal.experiencia
       .map(
         (experiencia, indice) =>
-          `<article class="experience-card filter-item">
+          `<article class="experience-card filter-item"
+                    data-experience-toggle
+                    tabindex="0"
+                    role="button"
+                    aria-expanded="false"
+                    aria-label="Mostrar funciones de ${experiencia.cargo} en ${experiencia.empresa}">
              <span class="experience-number">${String(indice + 1).padStart(2, "0")}</span>
              <div class="experience-icon"><i class="bi ${experiencia.icono}"></i></div>
              <div class="experience-content">
@@ -321,9 +335,54 @@ function renderizarExperiencia() {
                <strong>${experiencia.meses}</strong>
                <span>${experiencia.meses === 1 ? "mes" : "meses"}</span>
              </div>
+             <span class="experience-toggle-hint"><span>Ver funciones</span><i class="bi bi-chevron-down" aria-hidden="true"></i></span>
+             ${crearFuncionesExperiencia(experiencia.funciones)}
            </article>`
       )
       .join("")
+  );
+
+  colocarHTML(
+    "#otherExperienceContainer",
+    `<section class="other-experience-section" aria-labelledby="otherExperienceTitle">
+       <div class="other-experience-header">
+         <div>
+           <div class="other-experience-title-row">
+             <h2 id="otherExperienceTitle">Otras experiencias</h2>
+           </div>
+           <p>Experiencia laboral adicional en diferentes áreas</p>
+         </div>
+         <span class="other-experience-label">Trayectoria complementaria</span>
+       </div>
+       <div class="other-experience-timeline-scroll">
+         <div class="other-experience-timeline"
+              style="--timeline-columns: ${infoPersonal.otrasExperiencias.length}; --timeline-min-width: ${infoPersonal.otrasExperiencias.length * 210 + (infoPersonal.otrasExperiencias.length - 1) * 18 + 8}px;">
+           ${infoPersonal.otrasExperiencias
+           .map(
+             (experiencia) =>
+               `<article class="other-experience-item filter-item"
+                         data-experience-toggle
+                         tabindex="0"
+                         role="button"
+                         aria-expanded="false"
+                         aria-label="Mostrar funciones de ${experiencia.cargo} en ${experiencia.empresa}">
+                  <span class="other-experience-date">${experiencia.periodo}</span>
+                  <span class="other-experience-marker" aria-hidden="true"></span>
+                  <div class="other-experience-card">
+                    <span class="other-experience-icon"><i class="bi ${experiencia.icono}" aria-hidden="true"></i></span>
+                    <span class="other-experience-content">
+                      <strong>${experiencia.empresa}</strong>
+                      <small>${experiencia.cargo}</small>
+                    </span>
+                    <span class="experience-toggle-hint" aria-hidden="true"><i class="bi bi-chevron-down"></i></span>
+                    ${crearFuncionesExperiencia(experiencia.funciones)}
+                  </div>
+                </article>`
+           )
+             .join("")}
+         </div>
+       </div>
+     </section>`
   );
 }
 
@@ -411,33 +470,11 @@ function crearImagenProyecto(proyecto, claseImagen = "project-image", texto = "I
   const idYoutube = obtenerIdYoutube(proyecto.video);
 
   if (idYoutube) {
-    const parametros = new URLSearchParams({
-      autoplay: "1",
-      mute: "1",
-      controls: "0",
-      loop: "1",
-      playlist: idYoutube,
-      start: "0",
-      end: "60",
-      playsinline: "1",
-      rel: "0",
-      modestbranding: "1",
-      iv_load_policy: "3",
-      disablekb: "1",
-      fs: "0",
-      showinfo: "0"
-    });
-
-    return `<iframe
-              src="https://www.youtube-nocookie.com/embed/${idYoutube}?${parametros}"
-              title="Vista previa silenciosa de ${proyecto.nombre}"
-              class="${claseImagen} project-preview-video"
-              frameborder="0"
-              loading="lazy"
-              tabindex="-1"
-              allow="autoplay; encrypted-media"
-              aria-hidden="true">
-            </iframe>`;
+    return `<img
+              src="https://i.ytimg.com/vi/${idYoutube}/hqdefault.jpg"
+              alt="Miniatura del video de ${proyecto.nombre}"
+              class="${claseImagen} project-youtube-thumbnail"
+              loading="lazy">`;
   }
 
   if (proyecto.imagen) {
@@ -447,32 +484,49 @@ function crearImagenProyecto(proyecto, claseImagen = "project-image", texto = "I
 }
 
 function crearVideoProyecto(proyecto) {
-  if (!proyecto.video) {
+  const fuenteVideo = proyecto.video;
+
+  if (!fuenteVideo) {
     return '<i class="bi bi-play-circle"></i><span>Video del proyecto</span>';
   }
 
-  const esArchivoDeVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(proyecto.video);
+  const esArchivoDeVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(fuenteVideo);
 
   if (esArchivoDeVideo) {
     return `
-      <video controls preload="metadata">
-        <source src="${proyecto.video}">
+      <video controls preload="metadata" playsinline aria-label="Video de ${proyecto.nombre}">
+        <source src="${fuenteVideo}" type="video/mp4">
         Tu navegador no permite reproducir este video.
       </video>
     `;
   }
 
   const idYoutube = obtenerIdYoutube(proyecto.video);
-  const url = idYoutube
-    ? `https://www.youtube.com/embed/${idYoutube}?start=0&end=60&rel=0`
-    : proyecto.video;
+
+  if (idYoutube) {
+    const urlReproductor = proyecto.videoEmbed || `https://www.youtube.com/embed/${idYoutube}`;
+
+    return `
+      <iframe
+        width="560"
+        height="315"
+        src="${urlReproductor}"
+        title="Video de ${proyecto.nombre}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    `;
+  }
 
   return `
     <iframe
-      src="${url}"
+      src="${proyecto.video}"
       title="Video de ${proyecto.nombre}"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
     </iframe>
   `;
@@ -635,34 +689,91 @@ function obtenerHabilidadesDeProyectos() {
   );
 }
 
+function normalizarTexto(valor) {
+  return String(valor)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("es");
+}
+
+function escaparAtributo(valor) {
+  return String(valor)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 function renderizarFiltrosProyectos() {
   const filtros = obtenerHabilidadesDeProyectos();
   const hayFiltros = estadoProyectos.habilidadesSeleccionadas.size > 0;
+  const busquedaNormalizada = normalizarTexto(estadoProyectos.busquedaFiltro);
+  const filtrosDisponibles = filtros.filter(
+    (habilidad) => !estadoProyectos.habilidadesSeleccionadas.has(habilidad.nombre)
+  );
+  const hayCoincidencias = filtrosDisponibles.some((habilidad) =>
+    normalizarTexto(habilidad.nombre).includes(busquedaNormalizada)
+  );
 
   colocarHTML(
     "#projectFilters",
     `<div class="project-filters-heading">
        <div>
          <span>Filtrar por habilidad</span>
-         <small>Selecciona una o varias opciones</small>
+         <small>Busca y selecciona una o varias opciones</small>
        </div>
        <button type="button" class="project-filter-clear ${hayFiltros ? "visible" : ""}" data-clear-project-filters>
          Limpiar filtros
        </button>
      </div>
-     <div class="project-filter-options">
+     <div class="project-selected-filters" aria-live="polite">
        ${filtros
          .map((habilidad, indice) => {
            const seleccionada = estadoProyectos.habilidadesSeleccionadas.has(habilidad.nombre);
-           return `<button type="button"
-                           class="project-skill-filter ${seleccionada ? "selected" : ""}"
-                           data-project-filter-index="${indice}"
-                           aria-pressed="${seleccionada}">
+           if (!seleccionada) return "";
+           return `<button type="button" class="project-skill-filter selected"
+                           data-remove-project-filter="${indice}"
+                           aria-label="Quitar filtro ${habilidad.nombre}">
                      <i class="bi ${habilidad.icono}" aria-hidden="true"></i>
                      <span>${habilidad.nombre}</span>
+                     <i class="bi bi-x-lg project-filter-remove-icon" aria-hidden="true"></i>
                    </button>`;
          })
          .join("")}
+     </div>
+     <div class="project-filter-selector ${estadoProyectos.filtrosAbiertos ? "is-open" : ""}">
+       <button type="button" class="project-filter-trigger" data-toggle-project-filters
+               aria-expanded="${estadoProyectos.filtrosAbiertos}" aria-controls="projectFilterDropdown">
+         <span><i class="bi bi-funnel" aria-hidden="true"></i> Buscar habilidades</span>
+         <i class="bi bi-chevron-down project-filter-chevron" aria-hidden="true"></i>
+       </button>
+       <div id="projectFilterDropdown" class="project-filter-dropdown" ${estadoProyectos.filtrosAbiertos ? "" : "hidden"}>
+         <label class="project-filter-search">
+           <i class="bi bi-search" aria-hidden="true"></i>
+           <input type="search" value="${escaparAtributo(estadoProyectos.busquedaFiltro)}"
+                  placeholder="Buscar una habilidad..." autocomplete="off"
+                  data-project-filter-search aria-label="Buscar habilidades para filtrar">
+           <button type="button" class="project-filter-search-clear ${estadoProyectos.busquedaFiltro ? "visible" : ""}"
+                   data-clear-filter-search aria-label="Borrar búsqueda">
+             <i class="bi bi-x-lg" aria-hidden="true"></i>
+           </button>
+         </label>
+         <div class="project-filter-options" role="listbox" aria-label="Habilidades disponibles">
+           ${filtrosDisponibles
+             .map((habilidad) => {
+               const indice = filtros.indexOf(habilidad);
+               const oculta = !normalizarTexto(habilidad.nombre).includes(busquedaNormalizada);
+               return `<button type="button" class="project-filter-option ${oculta ? "is-filter-hidden" : ""}"
+                               data-project-filter-index="${indice}" role="option" aria-selected="false">
+                         <i class="bi ${habilidad.icono}" aria-hidden="true"></i>
+                         <span>${habilidad.nombre}</span>
+                         <i class="bi bi-plus-lg" aria-hidden="true"></i>
+                       </button>`;
+             })
+             .join("")}
+           <p class="project-filter-empty" ${hayCoincidencias ? "hidden" : ""}>No se encontraron habilidades.</p>
+         </div>
+       </div>
      </div>`
   );
 }
@@ -675,6 +786,8 @@ function actualizarProyectosFiltrados(animar = true) {
 function abrirProyectosPorHabilidad(nombreHabilidad) {
   estadoProyectos.habilidadesSeleccionadas.clear();
   estadoProyectos.habilidadesSeleccionadas.add(nombreHabilidad);
+  estadoProyectos.filtrosAbiertos = false;
+  estadoProyectos.busquedaFiltro = "";
   estadoProyectos.indiceDestacado = null;
   actualizarProyectosFiltrados();
   showDashboardView("proyectos-view");
@@ -942,6 +1055,19 @@ function seleccionarEstudio(indiceEstudio) {
   }, 120);
 }
 
+function alternarFuncionesExperiencia(tarjeta) {
+  const detalles = tarjeta?.querySelector(".experience-functions");
+  if (!detalles) return;
+
+  const expandida = tarjeta.getAttribute("aria-expanded") === "true";
+  tarjeta.setAttribute("aria-expanded", String(!expandida));
+  tarjeta.classList.toggle("is-expanded", !expandida);
+  detalles.hidden = expandida;
+
+  const textoAccion = tarjeta.querySelector(".experience-toggle-hint span");
+  if (textoAccion) textoAccion.textContent = expandida ? "Ver funciones" : "Ocultar funciones";
+}
+
 function agregarEventos() {
   obtenerElementos("[data-theme-toggle]").forEach((botonTema) => {
     botonTema.addEventListener("click", alternarTema);
@@ -969,6 +1095,21 @@ function agregarEventos() {
     });
   });
 
+  obtenerElemento("#experiencia-view")?.addEventListener("click", (event) => {
+    const tarjeta = event.target.closest("[data-experience-toggle]");
+    if (tarjeta) alternarFuncionesExperiencia(tarjeta);
+  });
+
+  obtenerElemento("#experiencia-view")?.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+
+    const tarjeta = event.target.closest("[data-experience-toggle]");
+    if (tarjeta && event.target === tarjeta) {
+      event.preventDefault();
+      alternarFuncionesExperiencia(tarjeta);
+    }
+  });
+
   obtenerElementos("[data-flip-card]").forEach((tarjeta) => {
     tarjeta.addEventListener("click", () => {
       const estaGirada = tarjeta.classList.toggle("is-flipped");
@@ -979,6 +1120,32 @@ function agregarEventos() {
   document.getElementById("dashboardSearch")?.addEventListener("input", filterCurrentView);
 
   obtenerElemento("#projectFilters")?.addEventListener("click", (event) => {
+    const botonAlternar = event.target.closest("[data-toggle-project-filters]");
+    if (botonAlternar) {
+      estadoProyectos.filtrosAbiertos = !estadoProyectos.filtrosAbiertos;
+      renderizarFiltrosProyectos();
+      if (estadoProyectos.filtrosAbiertos) {
+        window.setTimeout(() => obtenerElemento("[data-project-filter-search]")?.focus(), 0);
+      }
+      return;
+    }
+
+    const botonQuitar = event.target.closest("[data-remove-project-filter]");
+    if (botonQuitar) {
+      const habilidad = obtenerHabilidadesDeProyectos()[Number(botonQuitar.dataset.removeProjectFilter)];
+      if (habilidad) estadoProyectos.habilidadesSeleccionadas.delete(habilidad.nombre);
+      actualizarProyectosFiltrados();
+      return;
+    }
+
+    const botonLimpiarBusqueda = event.target.closest("[data-clear-filter-search]");
+    if (botonLimpiarBusqueda) {
+      estadoProyectos.busquedaFiltro = "";
+      renderizarFiltrosProyectos();
+      window.setTimeout(() => obtenerElemento("[data-project-filter-search]")?.focus(), 0);
+      return;
+    }
+
     const botonLimpiar = event.target.closest("[data-clear-project-filters]");
     if (botonLimpiar) {
       estadoProyectos.habilidadesSeleccionadas.clear();
@@ -992,12 +1159,46 @@ function agregarEventos() {
     const habilidad = obtenerHabilidadesDeProyectos()[Number(botonFiltro.dataset.projectFilterIndex)];
     if (!habilidad) return;
 
-    if (estadoProyectos.habilidadesSeleccionadas.has(habilidad.nombre)) {
-      estadoProyectos.habilidadesSeleccionadas.delete(habilidad.nombre);
-    } else {
-      estadoProyectos.habilidadesSeleccionadas.add(habilidad.nombre);
-    }
+    estadoProyectos.habilidadesSeleccionadas.add(habilidad.nombre);
     actualizarProyectosFiltrados();
+    window.setTimeout(() => obtenerElemento("[data-project-filter-search]")?.focus(), 0);
+  });
+
+  obtenerElemento("#projectFilters")?.addEventListener("input", (event) => {
+    if (!event.target.matches("[data-project-filter-search]")) return;
+
+    estadoProyectos.busquedaFiltro = event.target.value;
+    const busqueda = normalizarTexto(event.target.value.trim());
+    let coincidencias = 0;
+
+    obtenerElementos("#projectFilters .project-filter-option").forEach((opcion) => {
+      const coincide = normalizarTexto(opcion.textContent).includes(busqueda);
+      opcion.classList.toggle("is-filter-hidden", !coincide);
+      if (coincide) coincidencias += 1;
+    });
+
+    const mensajeVacio = obtenerElemento("#projectFilters .project-filter-empty");
+    if (mensajeVacio) mensajeVacio.hidden = coincidencias > 0;
+
+    obtenerElemento("#projectFilters .project-filter-search-clear")
+      ?.classList.toggle("visible", Boolean(event.target.value));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !estadoProyectos.filtrosAbiertos) return;
+    estadoProyectos.filtrosAbiertos = false;
+    renderizarFiltrosProyectos();
+    obtenerElemento("[data-toggle-project-filters]")?.focus();
+  });
+
+  document.addEventListener("click", (event) => {
+    const contenedorFiltros = obtenerElemento("#projectFilters");
+    if (
+      !estadoProyectos.filtrosAbiertos ||
+      event.composedPath().includes(contenedorFiltros)
+    ) return;
+    estadoProyectos.filtrosAbiertos = false;
+    renderizarFiltrosProyectos();
   });
 
   /*
