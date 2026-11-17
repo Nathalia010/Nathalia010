@@ -16,8 +16,15 @@ const estadoProyectos = {
   cantidadVisible: 3,
   habilidadesSeleccionadas: new Set(),
   filtrosAbiertos: false,
-  busquedaFiltro: ""
+  busquedaFiltro: "",
+  tipoSeleccionado: "web"
 };
+
+const tiposProyecto = [
+  { id: "web", nombre: "Proyectos web", icono: "bi-globe2" },
+  { id: "movil", nombre: "Aplicaciones móviles", icono: "bi-phone" },
+  { id: "base-datos", nombre: "Bases de datos", icono: "bi-database" }
+];
 
 /* Permite recordar qué estudio se abrió desde la tarjeta de Inicio. */
 const estadoEstudios = {
@@ -484,9 +491,70 @@ function crearImagenProyecto(proyecto, claseImagen = "project-image", texto = "I
 }
 
 function crearVideoProyecto(proyecto) {
+  if (proyecto.tipoContenido === "powerbi") {
+    if (proyecto.powerBiEmbed) {
+      return `<iframe
+        class="project-powerbi-frame"
+        src="${proyecto.powerBiEmbed}"
+        title="Informe interactivo de ${proyecto.nombre}"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>`;
+    }
+
+    return `<div class="project-powerbi-placeholder">
+      <i class="bi bi-bar-chart-fill" aria-hidden="true"></i>
+      <strong>Informe interactivo de Power BI</strong>
+      <span>El tablero estará disponible aquí cuando se publique el enlace del informe.</span>
+    </div>`;
+  }
+
+  if (Array.isArray(proyecto.imagenes) && proyecto.imagenes.length) {
+    return `<div class="project-image-gallery" data-project-gallery>
+      <div class="project-gallery-slides" aria-live="polite">
+        ${proyecto.imagenes
+          .map(
+            (imagen, indice) =>
+              `<img src="${imagen}"
+                    alt="Captura ${indice + 1} de ${proyecto.nombre}"
+                    class="project-gallery-slide ${indice === 0 ? "active" : ""}"
+                    data-gallery-slide="${indice}"
+                    ${indice === 0 ? "" : "hidden"}
+                    loading="lazy">`
+          )
+          .join("")}
+      </div>
+      <button type="button" class="project-gallery-button previous"
+              data-project-gallery-direction="previous" aria-label="Ver imagen anterior">
+        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="project-gallery-button next"
+              data-project-gallery-direction="next" aria-label="Ver imagen siguiente">
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      </button>
+      <div class="project-gallery-status">
+        <span data-gallery-counter>1 / ${proyecto.imagenes.length}</span>
+        <div class="project-gallery-dots" aria-hidden="true">
+          ${proyecto.imagenes
+            .map(
+              (_, indice) =>
+                `<span class="${indice === 0 ? "active" : ""}" data-gallery-dot="${indice}"></span>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>`;
+  }
+
   const fuenteVideo = proyecto.video;
 
   if (!fuenteVideo) {
+    if (proyecto.imagen) {
+      return `<img src="${proyecto.imagen}"
+                   alt="Logo de ${proyecto.nombre}"
+                   class="project-static-image"
+                   loading="lazy">`;
+    }
     return '<i class="bi bi-play-circle"></i><span>Video del proyecto</span>';
   }
 
@@ -532,6 +600,29 @@ function crearVideoProyecto(proyecto) {
   `;
 }
 
+function moverGaleriaProyecto(boton, direccion) {
+  const galeria = boton.closest("[data-project-gallery]");
+  if (!galeria) return;
+
+  const imagenes = [...galeria.querySelectorAll("[data-gallery-slide]")];
+  const indiceActual = imagenes.findIndex((imagen) => imagen.classList.contains("active"));
+  const movimiento = direccion === "next" ? 1 : -1;
+  const indiceSiguiente = (indiceActual + movimiento + imagenes.length) % imagenes.length;
+
+  imagenes.forEach((imagen, indice) => {
+    const activa = indice === indiceSiguiente;
+    imagen.classList.toggle("active", activa);
+    imagen.hidden = !activa;
+  });
+
+  galeria.querySelectorAll("[data-gallery-dot]").forEach((punto, indice) => {
+    punto.classList.toggle("active", indice === indiceSiguiente);
+  });
+
+  const contador = galeria.querySelector("[data-gallery-counter]");
+  if (contador) contador.textContent = `${indiceSiguiente + 1} / ${imagenes.length}`;
+}
+
 function crearProyectoInicio(proyecto) {
   return `<article class="home-project filter-item">
     <div class="project-placeholder">
@@ -570,8 +661,12 @@ function crearProyectoPrincipal(proyecto, indiceOriginal) {
          </div>
         </div>
         <div class="project-buttons">
-          <a ${atributosEnlace(proyecto.enlace)} class="gradient-button">Ver proyecto <i class="bi bi-box-arrow-up-right"></i></a>
-          <a ${atributosEnlace(proyecto.github)} class="secondary-button">GitHub <i class="bi bi-github"></i></a>
+          ${enlaceDisponible(proyecto.enlace)
+            ? `<a ${atributosEnlace(proyecto.enlace)} class="gradient-button">${proyecto.textoEnlace || "Ver proyecto"} <i class="bi bi-box-arrow-up-right"></i></a>`
+            : ""}
+          ${enlaceDisponible(proyecto.github)
+            ? `<a ${atributosEnlace(proyecto.github)} class="secondary-button">GitHub <i class="bi bi-github"></i></a>`
+            : ""}
         </div>
       </div>
     </article>
@@ -582,7 +677,9 @@ function crearProyectoHorizontal(proyecto, indiceOriginal) {
   return `<div class="project-grid-item project-grid-item-compact" style="view-transition-name: project-${indiceOriginal}">
     <article class="horizontal-project-card filter-item" data-project-index="${indiceOriginal}" tabindex="0" role="button" aria-label="Destacar el proyecto ${proyecto.nombre}">
       <div class="horizontal-image">${crearImagenProyecto(proyecto, "project-image", "")}</div>
-      <div><span>${proyecto.categoria}</span><h2>${proyecto.nombre}</h2><a ${atributosEnlace(proyecto.enlace)}>Ver proyecto</a></div>
+      <div><span>${proyecto.categoria}</span><h2>${proyecto.nombre}</h2>${enlaceDisponible(proyecto.enlace)
+        ? `<a ${atributosEnlace(proyecto.enlace)}>${proyecto.textoEnlace || "Ver proyecto"}</a>`
+        : `<button type="button" class="project-open-detail">Ver detalles</button>`}</div>
     </article>
   </div>`;
 }
@@ -635,18 +732,23 @@ function renderizarProyectosDetalle(animar = false) {
   const proyectosVisibles = infoPersonal.proyectos
     .map((proyecto, indiceOriginal) => ({ proyecto, indiceOriginal }))
     .filter(({ proyecto }) =>
+      obtenerTipoProyecto(proyecto) === estadoProyectos.tipoSeleccionado &&
       [...estadoProyectos.habilidadesSeleccionadas].every((habilidad) =>
         proyecto.habilidades?.includes(habilidad)
       )
     );
 
   if (!proyectosVisibles.length) {
+    const tipoActivo = tiposProyecto.find(
+      (tipo) => tipo.id === estadoProyectos.tipoSeleccionado
+    );
+    const hayFiltros = estadoProyectos.habilidadesSeleccionadas.size > 0;
     colocarHTML(
       "#projectsContainer",
       `<div class="projects-empty-state">
-         <i class="bi bi-funnel" aria-hidden="true"></i>
-         <h2>No hay proyectos con estas habilidades</h2>
-         <p>Prueba quitando uno de los filtros seleccionados.</p>
+         <i class="bi ${hayFiltros ? "bi-funnel" : tipoActivo?.icono || "bi-folder"}" aria-hidden="true"></i>
+         <h2>${hayFiltros ? "No hay proyectos con estas habilidades" : `Aún no hay ${tipoActivo?.nombre.toLocaleLowerCase("es") || "proyectos"}`}</h2>
+         <p>${hayFiltros ? "Prueba quitando uno de los filtros seleccionados." : "Esta categoría está lista para tus próximos proyectos."}</p>
        </div>`
     );
     return;
@@ -694,6 +796,49 @@ function normalizarTexto(valor) {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("es");
+}
+
+function obtenerTipoProyecto(proyecto) {
+  if (proyecto.tipoProyecto) return proyecto.tipoProyecto;
+
+  const contenido = normalizarTexto(
+    [proyecto.nombre, proyecto.categoria, ...(proyecto.habilidades || [])].join(" ")
+  );
+
+  if (/\b(android|flutter|react native|kotlin|movil|mobile)\b/.test(contenido)) {
+    return "movil";
+  }
+
+  if (/\b(base de datos|database|mysql|postgresql|sql|etl)\b/.test(contenido)) {
+    return "base-datos";
+  }
+
+  return "web";
+}
+
+function renderizarPestanasProyectos() {
+  const cantidades = infoPersonal.proyectos.reduce((conteo, proyecto) => {
+    const tipo = obtenerTipoProyecto(proyecto);
+    conteo[tipo] = (conteo[tipo] || 0) + 1;
+    return conteo;
+  }, {});
+
+  colocarHTML(
+    "#projectTypeTabs",
+    `<div class="project-type-tabs" role="tablist" aria-label="Cambiar categoría de proyectos">
+       ${tiposProyecto
+         .map((tipo) => {
+           const activa = tipo.id === estadoProyectos.tipoSeleccionado;
+           return `<button type="button" class="project-type-tab ${activa ? "active" : ""}"
+                           data-project-type="${tipo.id}" role="tab" aria-selected="${activa}">
+                     <i class="bi ${tipo.icono}" aria-hidden="true"></i>
+                     <span>${tipo.nombre}</span>
+                     <small aria-label="${cantidades[tipo.id] || 0} proyectos">${cantidades[tipo.id] || 0}</small>
+                   </button>`;
+         })
+         .join("")}
+     </div>`
+  );
 }
 
 function escaparAtributo(valor) {
@@ -780,6 +925,7 @@ function renderizarFiltrosProyectos() {
 
 function actualizarProyectosFiltrados(animar = true) {
   renderizarFiltrosProyectos();
+  renderizarPestanasProyectos();
   renderizarProyectosDetalle(animar);
 }
 
@@ -789,6 +935,12 @@ function abrirProyectosPorHabilidad(nombreHabilidad) {
   estadoProyectos.filtrosAbiertos = false;
   estadoProyectos.busquedaFiltro = "";
   estadoProyectos.indiceDestacado = null;
+  const proyectoCoincidente = infoPersonal.proyectos.find((proyecto) =>
+    proyecto.habilidades?.includes(nombreHabilidad)
+  );
+  if (proyectoCoincidente) {
+    estadoProyectos.tipoSeleccionado = obtenerTipoProyecto(proyectoCoincidente);
+  }
   actualizarProyectosFiltrados();
   showDashboardView("proyectos-view");
 }
@@ -796,6 +948,7 @@ function abrirProyectosPorHabilidad(nombreHabilidad) {
 function renderizarProyectos() {
   renderizarProyectosInicio();
   renderizarFiltrosProyectos();
+  renderizarPestanasProyectos();
   renderizarProyectosDetalle();
 }
 
@@ -1184,6 +1337,16 @@ function agregarEventos() {
       ?.classList.toggle("visible", Boolean(event.target.value));
   });
 
+  obtenerElemento("#projectTypeTabs")?.addEventListener("click", (event) => {
+    const pestana = event.target.closest("[data-project-type]");
+    if (!pestana || pestana.dataset.projectType === estadoProyectos.tipoSeleccionado) return;
+
+    estadoProyectos.tipoSeleccionado = pestana.dataset.projectType;
+    estadoProyectos.indiceDestacado = null;
+    renderizarPestanasProyectos();
+    renderizarProyectosDetalle(true);
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || !estadoProyectos.filtrosAbiertos) return;
     estadoProyectos.filtrosAbiertos = false;
@@ -1206,6 +1369,13 @@ function agregarEventos() {
    * aunque las tarjetas de proyectos se vuelvan a crear con innerHTML.
    */
   obtenerElemento("#projectsContainer")?.addEventListener("click", (event) => {
+    const botonGaleria = event.target.closest("[data-project-gallery-direction]");
+    if (botonGaleria) {
+      event.stopPropagation();
+      moverGaleriaProyecto(botonGaleria, botonGaleria.dataset.projectGalleryDirection);
+      return;
+    }
+
     const enlace = event.target.closest("a");
     if (enlace) {
       if (enlace.getAttribute("href") === "#") {

@@ -239,7 +239,10 @@ const infoPersonal = {
     { nombre: "Webhooks", descripcion: "Comunicación entre servicios y activación de automatizaciones mediante eventos HTTP", icono: "bi bi-broadcast", nivel: "Intermedio", mostrarEnInicio: false },
     { nombre: "REST API", descripcion: "Integración entre servicios mediante peticiones HTTP y APIs REST", icono: "bi bi-cloud-arrow-down", nivel: "Intermedio", mostrarEnInicio: false },
     { nombre: "Automatización", descripcion: "Diseño de flujos automáticos para integrar servicios y reducir tareas manuales", icono: "bi bi-gear-wide-connected", nivel: "Intermedio", mostrarEnInicio: true },
-    { nombre: "Agentes IA", descripcion: "Diseño de agentes capaces de interpretar solicitudes y ejecutar herramientas automáticamente", icono: "bi bi-robot", nivel: "Intermedio", mostrarEnInicio: true }
+    { nombre: "Agentes IA", descripcion: "Diseño de agentes capaces de interpretar solicitudes y ejecutar herramientas automáticamente", icono: "bi bi-robot", nivel: "Intermedio", mostrarEnInicio: true },
+    { nombre: "Android", descripcion: "Desarrollo de aplicaciones móviles nativas para Android", icono: "bi bi-android2", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "Bluetooth", descripcion: "Conexión y gestión de dispositivos Bluetooth", icono: "bi bi-bluetooth", nivel: "Intermedio", mostrarEnInicio: false },
+    { nombre: "SQL Server", descripcion: "Bases de datos, consultas y validación de información", icono: "bi bi-database", nivel: "Intermedio", mostrarEnInicio: false }
 
   ],
 
@@ -262,6 +265,32 @@ const infoPersonal = {
       mostrarEnInicio: true
     },
     {
+      nombre: "Juntos Bluetooth",
+      categoria: "Aplicación móvil",
+      tipoProyecto: "movil",
+      descripcion: `
+        Aplicación para Android 8 o superior que permite conectar dos audífonos o intercomunicadores Bluetooth y reproducir sonido en ambos al mismo tiempo desde un solo celular compatible. Es fácil e intuitiva, incluye widgets y permite elegir entre modo claro y oscuro.<br>
+        <strong>Mi aporte:</strong> Desarrollé la gestión de permisos y conexiones Bluetooth, los controles de volumen disponibles según las capacidades del dispositivo, el widget compacto y la notificación persistente para consultar el estado de los equipos.<br>
+        <strong>Resultado:</strong> Facilita la vinculación, supervisión y administración de dispositivos de audio Bluetooth, respetando las limitaciones públicas de enrutamiento y volumen de Android.
+      `,
+      imagen: "https://raw.githubusercontent.com/Nathalia010/app2bluetooth/main/assets/logo-original.png",
+      imagenes: [
+        "assets/juntos-bluetooth-8.jpeg",
+        "assets/juntos-bluetooth-7.jpeg",
+        "assets/juntos-bluetooth-6.jpeg",
+        "assets/juntos-bluetooth-5.jpeg",
+        "assets/juntos-bluetooth-4.jpeg",
+        "assets/juntos-bluetooth-3.jpeg",
+        "assets/juntos-bluetooth-2.jpeg",
+        "assets/juntos-bluetooth-1.jpeg"
+      ],
+      video: "",
+      enlace: "https://github.com/Nathalia010/app2bluetooth",
+      github: "https://github.com/Nathalia010/app2bluetooth",
+      habilidades: ["Android", "Java", "Bluetooth", "Git", "GitHub"],
+      mostrarEnInicio: false
+    },
+    {
       nombre: "Reserva · Sistema Central de Gestión & Analítica",
       nombreInicio: "Reservas,Gestión & Analítica",
       categoria: "Desarrollo aplicaciones",
@@ -275,6 +304,25 @@ const infoPersonal = {
       enlace: "https://github.com/Nathalia010/Sistema-Central-de-Gesti-n",
       github: "https://github.com/Nathalia010/Sistema-Central-de-Gesti-n",
       habilidades: ["Python", "FastAPI", "MySQL", "Pytest", "Postman", "GitHub", "Docker", ""],
+      mostrarEnInicio: false
+    },
+    {
+      nombre: "Power BI · Gestión y pronósticos",
+      nombreInicio: "Gestión y pronósticos",
+      categoria: "Análisis de datos",
+      tipoProyecto: "base-datos",
+      tipoContenido: "powerbi",
+      descripcion: `
+        Proyecto de análisis de datos que simula una empresa mayorista de tecnología. Permite estudiar las ventas, los productos, el inventario, las importaciones y la demanda esperada. Todos los datos utilizados son ficticios y no representan información real.<br>
+        <strong>Objetivo:</strong> Identificar los productos más vendidos, alertas de poco inventario, valor del inventario, tiempos de entrega de proveedores, tendencias de ventas y posibles necesidades para los próximos meses.<br>
+        <strong>Solución:</strong> Los datos se organizan en Excel, se almacenan y validan en SQL Server y se presentan en Power BI mediante cinco páginas: resumen ejecutivo, productos e inventario, importaciones, pronósticos e indicadores de gestión. Python se utilizará como apoyo para los modelos de pronóstico.<br>
+        <strong>Datos analizados:</strong> 150 productos, 20 proveedores, aproximadamente 15.000 ventas, 3.300 registros de inventario, 500 importaciones y un calendario de 669 registros, entre enero de 2025 y octubre de 2026.
+      `,
+      powerBiEmbed: "",
+      enlace: "",
+      textoEnlace: "Abrir en Power BI",
+      github: "",
+      habilidades: ["Power BI", "SQL Server", "Excel", "Python", "ETL"],
       mostrarEnInicio: false
     },
     {
