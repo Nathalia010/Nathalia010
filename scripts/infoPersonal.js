@@ -288,7 +288,7 @@ const infoPersonal = {
       enlace: "https://github.com/Nathalia010/app2bluetooth",
       github: "https://github.com/Nathalia010/app2bluetooth",
       habilidades: ["Android", "Java", "Bluetooth", "Git", "GitHub"],
-      mostrarEnInicio: false
+      mostrarEnInicio: true
     },
     {
       nombre: "Reserva · Sistema Central de Gestión & Analítica",
@@ -318,12 +318,13 @@ const infoPersonal = {
         <strong>Solución:</strong> Los datos se organizan en Excel, se almacenan y validan en SQL Server y se presentan en Power BI mediante cinco páginas: resumen ejecutivo, productos e inventario, importaciones, pronósticos e indicadores de gestión. Python se utilizará como apoyo para los modelos de pronóstico.<br>
         <strong>Datos analizados:</strong> 150 productos, 20 proveedores, aproximadamente 15.000 ventas, 3.300 registros de inventario, 500 importaciones y un calendario de 669 registros, entre enero de 2025 y octubre de 2026.
       `,
-      powerBiEmbed: "",
+      imagen: "assets/powerbi-gestion-pronosticos.png",
+      powerBiEmbed: "https://app.powerbi.com/reportEmbed?reportId=70e3b878-9c59-4be2-9f7e-84df6e8f65cf&autoAuth=true&ctid=4bf38ea2-832d-4552-b508-421570da43ff&pageName=mps00000000000000004",
       enlace: "https://app.powerbi.com/links/WOT51JNGnl?ctid=4bf38ea2-832d-4552-b508-421570da43ff&pbi_source=linkShare",
       textoEnlace: "Abrir en Power BI",
       github: "https://github.com/Nathalia010/Gestion_Pronostico",
       habilidades: ["Power BI", "SQL Server", "Excel", "Python", "ETL"],
-      mostrarEnInicio: false
+      mostrarEnInicio: true
     },
     {
       nombre: "Plataforma de adopción de mascotas",

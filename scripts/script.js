@@ -627,7 +627,8 @@ function crearProyectoInicio(proyecto) {
   return `<article class="home-project filter-item">
     <div class="project-placeholder">
       ${crearImagenProyecto(proyecto)}
-      <button type="button" class="play-button internal-navigation" data-go="proyectos-view" aria-label="Ver proyecto">
+      <button type="button" class="play-button internal-navigation" data-go="proyectos-view"
+              data-home-project="${escaparAtributo(proyecto.nombre)}" aria-label="Ver proyecto ${proyecto.nombre}">
         <i class="bi bi-play-fill"></i>
       </button>
     </div>
@@ -1412,7 +1413,23 @@ function agregarEventos() {
   /* Los botones de reproducción se recrean al mover el carrusel. */
   obtenerElemento("#homeProjects")?.addEventListener("click", (event) => {
     const boton = event.target.closest(".internal-navigation");
-    if (boton?.dataset.go) showDashboardView(boton.dataset.go);
+    if (!boton?.dataset.go) return;
+
+    const indiceProyecto = infoPersonal.proyectos.findIndex(
+      (proyecto) => proyecto.nombre === boton.dataset.homeProject
+    );
+
+    if (indiceProyecto >= 0) {
+      const proyecto = infoPersonal.proyectos[indiceProyecto];
+      estadoProyectos.habilidadesSeleccionadas.clear();
+      estadoProyectos.filtrosAbiertos = false;
+      estadoProyectos.busquedaFiltro = "";
+      estadoProyectos.tipoSeleccionado = obtenerTipoProyecto(proyecto);
+      estadoProyectos.indiceDestacado = indiceProyecto;
+      actualizarProyectosFiltrados(false);
+    }
+
+    showDashboardView(boton.dataset.go);
   });
 
   /* Cualquier tarjeta académica puede cambiar la selección. */
