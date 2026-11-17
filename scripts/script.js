@@ -505,7 +505,7 @@ function crearVideoProyecto(proyecto) {
     return `<div class="project-powerbi-placeholder">
       <i class="bi bi-bar-chart-fill" aria-hidden="true"></i>
       <strong>Informe interactivo de Power BI</strong>
-      <span>El tablero estará disponible aquí cuando se publique el enlace del informe.</span>
+      <span>Abre el informe en Power BI con el botón que aparece debajo. El servicio puede solicitar que inicies sesión.</span>
     </div>`;
   }
 

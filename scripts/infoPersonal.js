@@ -319,9 +319,9 @@ const infoPersonal = {
         <strong>Datos analizados:</strong> 150 productos, 20 proveedores, aproximadamente 15.000 ventas, 3.300 registros de inventario, 500 importaciones y un calendario de 669 registros, entre enero de 2025 y octubre de 2026.
       `,
       powerBiEmbed: "",
-      enlace: "",
+      enlace: "https://app.powerbi.com/links/WOT51JNGnl?ctid=4bf38ea2-832d-4552-b508-421570da43ff&pbi_source=linkShare",
       textoEnlace: "Abrir en Power BI",
-      github: "",
+      github: "https://github.com/Nathalia010/Gestion_Pronostico",
       habilidades: ["Power BI", "SQL Server", "Excel", "Python", "ETL"],
       mostrarEnInicio: false
     },
