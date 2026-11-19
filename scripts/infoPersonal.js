@@ -327,6 +327,30 @@ const infoPersonal = {
       mostrarEnInicio: true
     },
     {
+      nombre: "Mundo Catálogo",
+      categoria: "Desarrollo web",
+      tipoProyecto: "web",
+      descripcion: `
+        Plataforma web para publicar y consultar catálogos digitales en formato PDF desde computador o celular. Permite recorrer cada catálogo página a página, avanzar, retroceder y abrir el documento completo. Incluye inicio de sesión para acceder de forma segura a las funciones administrativas.<br>
+        <strong>Mi aporte:</strong> Desarrollé una interfaz adaptable a diferentes pantallas, un visor de doble página para escritorio y una vista optimizada para celular. También implementé el inicio de sesión y un panel administrativo para agregar, ordenar, reemplazar y eliminar catálogos.<br>
+        <strong>Resultado:</strong> Centraliza varios catálogos en un solo sitio y facilita su administración y consulta sin tener que descargar primero cada archivo.
+      `,
+      imagen: "assets/mundo-catalogo-lector-escritorio.png",
+      imagenes: [
+        "assets/mundo-catalogo-inicio-escritorio.png",
+        "assets/mundo-catalogo-administracion-escritorio.png",
+        "assets/mundo-catalogo-lector-escritorio.png",
+        "assets/mundo-catalogo-portada-movil.png",
+        "assets/mundo-catalogo-administracion-movil.png",
+        "assets/mundo-catalogo-lector-movil.png"
+      ],
+      video: "",
+      enlace: "https://mundocatalogo.onrender.com/",
+      github: "https://github.com/Nathalia010/MundoCatalogo",
+      habilidades: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+      mostrarEnInicio: false
+    },
+    {
       nombre: "Plataforma de adopción de mascotas",
       nombreInicio: "Adopción de mascotas",
       categoria: "Desarrollo web",
